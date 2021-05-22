@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
+  correo: string;
   password: string;
 
   constructor(
@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    if (!this.password && !this.email) { return; }
-    this.userService.login(this.email, this.password).subscribe((res: any) => {
+    if (!this.password && !this.correo) { return; }
+    this.userService.login(this.correo, this.password).subscribe((res: any) => {
       if (res.accessToken) {
         this.router.navigate(['/home']);
         this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');

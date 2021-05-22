@@ -22,7 +22,7 @@ export class ProductService {
 
   getAllProducts(): Observable<any> {
     // this.modalService.abrirModal('modalLoading');
-    const url = `${environment.urlApi}products`;
+    const url = `${environment.urlApi}paquetes`;
     return this.http.get(url).pipe(
       map(
         (res: any) => {

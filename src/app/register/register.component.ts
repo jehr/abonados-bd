@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   email: string;
   phone: number;
   password: string;
-  repeatPassword: string;;
+  repeatPassword: string;
 
   constructor(private router: Router,
     private userService: UserService,

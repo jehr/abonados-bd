@@ -25,8 +25,8 @@ export class UserService {
     this.token = sessionStorage.getItem("token") || '';
   }
 
-  login(email: string, password: string) {
-    let user = { email: email, password: password };
+  login(correo: string, password: string) {
+    let user = { correo: correo, password: password };
     let url = `${environment.urlApi}sign-in`;
     this.modalService.abrirModal('modalLoading');
 

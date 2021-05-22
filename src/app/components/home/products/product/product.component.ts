@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/services/modal.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,12 +11,12 @@ export class ProductComponent implements OnInit {
 
   @Input() product: any;
 
-  constructor() {}
+  constructor(private modalServices:ModalService) {}
 
   ngOnInit(): void {}
 
-  pagar() {
-    alert('juanes');
+  comprar() {
+    this.modalServices.abrirModal('modalAbonado');
   }
 
 }
