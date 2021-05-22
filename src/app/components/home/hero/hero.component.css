@@ -1,0 +1,10 @@
+.hero {
+    min-height: 500px;
+    width: 100%;
+    background: url('https://cr00.epimg.net/radio/imagenes/2019/05/15/deportes/1557931294_501452_1557932226_noticia_normal.jpg') no-repeat center top;
+    background-size: cover;
+    background-position: center;
+    background-color: rgb(50, 50, 50);
+    background-blend-mode: soft-light;
+    background-attachment: fixed;
+}

@@ -1,0 +1,58 @@
+<div class="modal fade" id="modalEditProduct" tabindex="-1" aria-labelledby="modalEditProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditProductLabel">Editar producto</h5>
+            </div>
+            <div class="modal-body">
+                <input type="file" class="dropifys" data-allowed-file-extensions='["png","jpg", "jpeg"]'
+                    (change)="productService.productImageEdit = $event.target.files" multiple />
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="nameProduct">Nombre</label>
+                        <input type="text" id="nameProduct" [(ngModel)]="productService.product.name" class="form-control"
+                            placeholder="Nombre">
+                    </div>
+
+                </div>
+
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="desProduct">Descripción</label>
+                        <input type="text" id="desProduct" [(ngModel)]="productService.product.description" class="form-control"
+                            placeholder="Descripción">
+                    </div>
+                </div>
+
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="priceProduct">Precio</label>
+                        <input type="text" id="priceProduct" [(ngModel)]="productService.product.price" class="form-control"
+                            placeholder="Precio">
+                    </div>
+
+                </div>
+
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="cateProduct">Categoría</label>
+                        <input type="text" id="cateProduct" [(ngModel)]="productService.product.category" class="form-control"
+                            placeholder="Categoria">
+                    </div>
+                </div>
+
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="stockProduct">Stock</label>
+                        <input type="text" id="stockProduct" [(ngModel)]="productService.product.stock" class="form-control"
+                            placeholder="Stock">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modalService.cerarModal('modalEditProduct')">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editProduct(productService.product)">Editar producto</button>
+            </div>
+        </div>
+    </div>
+</div>

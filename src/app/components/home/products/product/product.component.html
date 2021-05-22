@@ -1,0 +1,51 @@
+<div class="contenedor mt-4">
+    <div class="contenedor-2">
+        <div class="contenedor-3" *ngIf="product.image.length > 0">
+            <div class="contenedor-4">
+                <span class="my-span">
+                    <a href="#" style="color: #2D2D2A; display: block;     cursor: pointer;
+                    text-decoration: none;">
+                        <span class="my-span-2">
+                            <i class="fas fa-plus my-icon" (click)="pagar()"></i>
+                        </span>
+                </a>
+                </span>
+                <div>
+                    <div class="contenedor-5">
+                        <div class="contenedor-6">
+                            <img alt="{{product.name}}" height="auto" width="auto" [src]="product.image[0][1]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-7" *ngIf="product.image.length > 0">
+            <div>
+                <div class="contenedor-8">
+                    <div class="contenedor-9">
+                        <div class="contenedor-10">
+                            <h4 style="font-weight: 500; margin: 0 0 5px;">{{ product.name }} </h4>
+                        </div>
+                        <div class="contenedor-11">
+                            <div class="contenedor-12">
+                                <small class="my-small">{{ product.category }}</small>
+                                <div>
+                                    <strong class="my-strong">${{ product.price }} &nbsp;COP</strong>
+                                </div>
+                            </div>
+                            <div class="contenedor-13">
+                                <div class="contenedor-14">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedor-15">
+                        <!-- {{ product.description }} -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
