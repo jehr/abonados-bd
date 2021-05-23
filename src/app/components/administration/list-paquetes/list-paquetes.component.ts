@@ -15,6 +15,7 @@ declare var $;
 export class ListPaquetesComponent implements OnInit {
 
   paquetes: any[] = [];
+  paquetes_view: any[] = [];
   partidos: any[] = [];
   nombre_paquete: string;
   precio: string;
@@ -96,7 +97,14 @@ export class ListPaquetesComponent implements OnInit {
   }
 
   showModalView(id: string): void {
-    this.modalService.abrirModal('modalViewPaquete');
+    this.paqueteService.getPaqueteById(id).subscribe((res) => {
+      if(res.ok) {
+        this.paquetes_view = res.paquete;
+        this.modalService.abrirModal('modalViewPaquete');
+      } else {
+        return;
+      }
+    });
   }
 
   deleteItem(item: any): void {
