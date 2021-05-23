@@ -14,8 +14,10 @@ declare var $;
 export class ListPaquetesComponent implements OnInit {
 
   paquetes: any[] = [];
-  nameEstadio: string;
-  cantEspectadores: string;
+  nombre_paquete: string;
+  precio: string;
+  descripcion_paquete: string;
+  fk_partidos: any[];
 
   constructor(private paqueteService: PaqueteService,
     public modalService: ModalService,
@@ -37,19 +39,21 @@ export class ListPaquetesComponent implements OnInit {
     }
 
   showModalAdd(): void {
-    this.modalService.abrirModal('modalAddEstadio');
+    this.modalService.abrirModal('modalAddPaquete');
   }
 
-  saveEstadio(): void {
+  savePaquete(): void {
 
-    if (!this.nameEstadio || !this.cantEspectadores) {
+    if (!this.nombre_paquete || !this.precio || !this.descripcion_paquete || !this.fk_partidos ) {
       this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
       return;
     }
 
     const paquete = {
-      nombre: this.nameEstadio,
-      espectadores: this.cantEspectadores,
+      nombre_paquete: this.nombre_paquete,
+      precio: this.precio,
+      descripcion_paquete: this.descripcion_paquete,
+      fk_partidos: this.fk_partidos,
     }
 
     this.paqueteService.sendPaquete(paquete).subscribe((res) => {
@@ -60,8 +64,10 @@ export class ListPaquetesComponent implements OnInit {
           $('.dropify-wrapper').removeClass('has-error');
         }
 
-        this.nameEstadio = '';
-        this.cantEspectadores = '';
+        this.nombre_paquete = '';
+        this.descripcion_paquete = '';
+        this.precio = '';
+        this.fk_partidos = [];
 
         this.loadPaquetes();
 
