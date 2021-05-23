@@ -8,27 +8,31 @@
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let partido of partidos">
-                        <div>
-                            {{ partido.fecha_partido }}
-                        </div>
-                        <div>
-                            {{ partido.hora }}
-                        </div>
-                        <div>
-                            {{ partido.equipo_local }}
-                        </div>
-                        <div>
-                            {{ partido.equipo_visita }}
-                        </div>
-                        <div>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Equipo Local</th>
+                            <th scope="col">Equipo Visitante</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let partido of partidos">
+                        <th scope="row">{{ partido.fecha_partido}}</th>
+                        <td>{{ partido.hora }}</td>
+                        <td>{{ partido.equipo_local }}</td>
+                        <td>{{ partido.equipo_visita }}</td>
+                        <td>{{ estadio.capacidad }}</td>
+
+
+                        <td>
                             <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(paquete._id)"></i>
                             <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete)"></i>
                             <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(paquete)"></i>
-                        </div>
-                    </li>
-                </ul>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
