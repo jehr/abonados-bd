@@ -61,7 +61,7 @@
                     <div class="col">
                         <label for="descripcion_paquete">Partidos</label>
                         <select class="custom-select" id="fk_partidos" [(ngModel)]="fk_partidos">
-                            <option *ngFor="let partido of partidos" value="partido._id">
+                            <option *ngFor="let partido of partidos" [value]="partido._id">
                                 {{ partido.equipo_local }} vs {{ partido.equipo_visita }}
                             </option>
                         </select>
@@ -71,6 +71,50 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddPaquete')" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" (click)="savePaquete()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalViewPaquete" tabindex="-1" aria-labelledby="modalViewPaqueteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalViewPaqueteLabel">Detalle paquete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="nombre_paquete">Nombre Paquete</label>
+                        <input type="text" id="nombre_paquete" readonly class="form-control" placeholder="Nombre estadio">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="precio">Precio</label>
+                        <input type="text" id="precio" readonly class="form-control" placeholder="Nombre estadio">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="descripcion_paquete">Descripcion</label>
+                        <input type="text" id="descripcion_paquete" readonly class="form-control" placeholder="Cantidad de espectadores">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="descripcion_paquete">Partidos</label>
+                        <select class="custom-select" id="fk_partidos">
+                            <option *ngFor="let partido of partidos" [value]="partido._id">
+                                {{ partido.equipo_local }} vs {{ partido.equipo_visita }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPaquete')" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

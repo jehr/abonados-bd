@@ -96,8 +96,7 @@ export class ListPaquetesComponent implements OnInit {
   }
 
   showModalView(id: string): void {
-    alert('juehdu');
-    this.modalService.abrirModal('modalViewEstadio');
+    this.modalService.abrirModal('modalViewPaquete');
   }
 
   deleteItem(item: any): void {
