@@ -8,24 +8,28 @@
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let paquete of paquetes">
-                        <div>
-                            {{ paquete.nombre_paquete }}
-                        </div>
-                        <div>
-                            {{ paquete.precio }}
-                        </div>
-                        <div>
-                            {{ paquete.descripcion_paquete }}
-                        </div>
-                        <div>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tipo de paquete</th>
+                            <th scope="col">Precio del paquete</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let paquete of paquetes">
+                        <th scope="row">{{ paquete.nombre_paquete }}</th>
+                        <td>{{ paquete.precio }}</td>
+                        <td>{{ paquete.descripcion_paquete }}</td>
+
+
+                        <td>
                             <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(paquete._id)"></i>
                             <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete)"></i>
                             <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(paquete)"></i>
-                        </div>
-                    </li>
-                </ul>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
