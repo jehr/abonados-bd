@@ -8,18 +8,28 @@
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let estadio of estadios">
-                        <div>
-                            {{ estadio.nombre }}
-                        </div>
-                        <div>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(estadio._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(estadio)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(estadio)"></i>
-                        </div>
-                    </li>
-                </ul>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre del estadio</th>
+                            <th scope="col">Capacidad del estadio</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let estadio of estadios">
+                        <th scope="row">{{ estadio.nombre }}</th>
+                        <td>{{ estadio.espectadores }}</td>
+                        <td>{{ estadio.capacidad }}</td>
+
+
+                        <td>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(paquete._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(paquete)"></i>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
