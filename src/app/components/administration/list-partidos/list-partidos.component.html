@@ -23,13 +23,10 @@
                         <td>{{ partido.hora }}</td>
                         <td>{{ partido.equipo_local }}</td>
                         <td>{{ partido.equipo_visita }}</td>
-                        <td>{{ estadio.capacidad }}</td>
-
-
                         <td>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(paquete._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(paquete)"></i>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(partido._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(partido)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(partido)"></i>
                         </td>
                     </tr>
                 </table>
@@ -76,6 +73,46 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddEstadio')" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" (click)="savePartido()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalViewPartido" tabindex="-1" aria-labelledby="modalViewPartidoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalViewPartidoLabel">Detalle partido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Equipo Local</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ equipo_local_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Equipo Visita</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ equipo_visita_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Fecha partido</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ fecha_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Hora</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ hora_view }}">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPartido')" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

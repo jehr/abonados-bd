@@ -39,7 +39,7 @@ export class EstadioService {
 
   getEstadioById(id: string): Observable<any> {
     // this.modalService.abrirModal('modalLoading');
-    const url = `${environment.urlApi}products/get-product?id=${id}`;
+    const url = `${environment.urlApi}estadios/get-estadio?id=${id}`;
     return this.http.get(url).pipe(
       map(
         (res: any) => {

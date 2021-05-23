@@ -15,12 +15,16 @@ declare var $;
 export class ListPaquetesComponent implements OnInit {
 
   paquetes: any[] = [];
-  paquetes_view: any[] = [];
+  paquetes_view;
   partidos: any[] = [];
   nombre_paquete: string;
   precio: string;
   descripcion_paquete: string;
   fk_partidos: any[];
+  nombre_view: string;
+  precio_view: string;
+  descripcion_view: string;
+
 
   constructor(private paqueteService: PaqueteService,
     private partidoService: PartidoService,
@@ -99,7 +103,11 @@ export class ListPaquetesComponent implements OnInit {
   showModalView(id: string): void {
     this.paqueteService.getPaqueteById(id).subscribe((res) => {
       if(res.ok) {
-        this.paquetes_view = res.paquete;
+        this.paquetes_view = res.paquete.fk_partidos;
+        console.log('this.paquetes_view :>> ', this.paquetes_view);
+        this.nombre_view = res.paquete.nombre_paquete;
+        this.precio_view = res.paquete.precio;
+        this.descripcion_view = res.paquete.descripcion_paquete;
         this.modalService.abrirModal('modalViewPaquete');
       } else {
         return;
