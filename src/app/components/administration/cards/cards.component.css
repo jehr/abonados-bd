@@ -1,11 +1,11 @@
 .contenedor {
-    padding-left: 60px; 
-    display: flex; 
-    justify-content: center; 
+    padding-left: 60px;
+    display: flex;
+    justify-content: center;
     align-items: center;
     height: 100vh;
     /* background-image: url('https://images.unsplash.com/photo-1608067008273-aaff95eca6ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); */
-    background-image: url('https://images.unsplash.com/photo-1597874040470-5df6cc1f4bff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-image: url('https://fcf.com.co/wp-content/uploads/2019/04/Azul_FCF-1.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 center;
@@ -18,14 +18,11 @@
     .h1-custom {
         justify-content: center;
     }
-
     .card-custom {
-         max-width: 95% !important;
-         height: 250px !important;
-         /* background: red !important; */
+        max-width: 95% !important;
+        height: 250px !important;
+        /* background: red !important; */
     }
-    
-
 }
 
 .wrapper {
@@ -102,7 +99,7 @@
     width: 100%;
     height: 80px;
     max-width: 80px;
-    background: linear-gradient(90deg, #FFA5B7 0%, #ff8da3 40%, rgb(146 162 241 / 28%) 60%);
+    background: linear-gradient(90deg, #5f5758 0%, #5f5758 40%, rgb(146 162 241 / 28%) 60%);
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -135,7 +132,7 @@
     text-align: center;
     margin-top: 30px;
     /* color: rgb(0, 0, 0); */
-    color: #FFA5B7;
+    color: #000;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -148,7 +145,7 @@
     text-align: center;
     margin-top: 20px;
     /* color: rgb(0, 0, 0); */
-    color: #FFA5B7;
+    color: #fff;
     font-weight: 200;
     letter-spacing: 2px;
     opacity: 1;
@@ -177,7 +174,7 @@
 }
 
 .card-custom:hover .icon i {
-    background: linear-gradient(90deg, #FFA5B7, #ff8da3);
+    background: linear-gradient(90deg, #000, #000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 1;
@@ -186,10 +183,10 @@
 
 .lstick {
     width: 2px;
-    background: #FFA5B7;
+    background: #000;
     height: 30px;
     margin-left: -20px;
     margin-right: 18px;
     display: inline-block;
-    vertical-align: middle; 
+    vertical-align: middle;
 }

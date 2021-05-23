@@ -3,7 +3,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-image: url('https://images.unsplash.com/photo-1597874040470-5df6cc1f4bff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-image: url('https://fcf.com.co/wp-content/uploads/2019/04/Azul_FCF-1.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 center;
@@ -11,6 +11,7 @@
     background-blend-mode: soft-light;
     background-attachment: fixed;
 }
+
 .list-contend {
     /* box-shadow: #f7edef94 0px 4px 12px; */
     box-shadow: #04040494 0px 4px 12px;
@@ -31,7 +32,7 @@
 }
 
 .eye-icon {
-    color: #f94569;
+    color: yellow;
 }
 
 .edit-icon {
@@ -46,10 +47,10 @@
 
 .lstick {
     width: 2px;
-    background: #FFA5B7;
+    background: #fff;
     height: 30px;
     margin-left: -20px;
     margin-right: 18px;
     display: inline-block;
-    vertical-align: middle; 
+    vertical-align: middle;
 }

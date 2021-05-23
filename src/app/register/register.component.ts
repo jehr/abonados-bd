@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
   lastname: string;
   email: string;
   phone: number;
+  numero_documento: number;
+  cedula: number;
+  tarjeta_identidad: number;
+  cedula_extranjera: number;
   password: string;
   repeatPassword: string;
 

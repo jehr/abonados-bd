@@ -20,7 +20,10 @@ export class PaymentComponent implements OnInit {
   }
 
   comprar() {
+    
     console.log('this.nombre_abonado :>> ', this.localidad);
+
+
   }
 
 }
