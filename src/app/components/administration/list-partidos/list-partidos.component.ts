@@ -88,4 +88,16 @@ export class ListPartidosComponent implements OnInit {
     this.modalService.abrirModal('modalViewEstadio');
   }
 
+  deleteItem(item: any): void {
+    this.partidoService.deletePartido(item._id).subscribe((res) => {
+      if (res.ok) {
+        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        this.loadPartidos();
+      } else {
+        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+    }
+    )
+  };
+
 }

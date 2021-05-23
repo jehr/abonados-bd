@@ -81,8 +81,19 @@ export class ListEstadiosComponent implements OnInit {
   }
 
   showModalView(id: string): void {
-    alert('juehdu');
     this.modalService.abrirModal('modalViewEstadio');
   }
+
+  deleteItem(item: any): void {
+    this.estadioService.deleteEstadio(item._id).subscribe((res) => {
+      if (res.ok) {
+        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        this.loadEstadios();
+      } else {
+        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+    }
+    )
+  };
 
 }

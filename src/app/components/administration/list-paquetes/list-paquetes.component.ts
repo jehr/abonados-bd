@@ -4,6 +4,7 @@ import { ModalService } from 'src/app/services/modal.service';
 import * as moment from 'moment';
 import { UserService } from 'src/app/services/user.service';
 import { PaqueteService } from 'src/app/services/paquete.service';
+import { PartidoService } from 'src/app/services/partido.service';
 declare var $;
 
 @Component({
@@ -14,18 +15,21 @@ declare var $;
 export class ListPaquetesComponent implements OnInit {
 
   paquetes: any[] = [];
+  partidos: any[] = [];
   nombre_paquete: string;
   precio: string;
   descripcion_paquete: string;
   fk_partidos: any[];
 
   constructor(private paqueteService: PaqueteService,
+    private partidoService: PartidoService,
     public modalService: ModalService,
     public userService: UserService,
     private alertService: AlertService,) { }
 
     ngOnInit(): void {
       this.loadPaquetes();
+      this.loadPartidos();
       setTimeout(() => {
         $('.dropifys').dropify({
           messages: {
@@ -84,9 +88,28 @@ export class ListPaquetesComponent implements OnInit {
     });
   }
 
+  loadPartidos(): void {
+    this.partidoService.getAllPartidos().subscribe((res) => {
+      console.log('res.partidos :>> ', res.partidos);
+      this.partidos = res.partidos;
+    });
+  }
+
   showModalView(id: string): void {
     alert('juehdu');
     this.modalService.abrirModal('modalViewEstadio');
   }
+
+  deleteItem(item: any): void {
+    this.paqueteService.deletePaquete(item._id).subscribe((res) => {
+      if (res.ok) {
+        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        this.loadPaquetes();
+      } else {
+        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+    }
+    )
+  };
 
 }

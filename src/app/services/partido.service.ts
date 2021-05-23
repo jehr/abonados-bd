@@ -120,6 +120,8 @@ export class PartidoService {
       Authorization: `Bearer ${token}`,
     });
     // this.modalService.abrirModal('modalLoading');
+    console.log('id :>> ', id);
+
     return this.http.post(url, {id}, {headers}).pipe(
       map(
         (res: any) => {
