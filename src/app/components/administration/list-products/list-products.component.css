@@ -54,3 +54,11 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.header-table {
+    background-color: gray;
+}
+
+.header-1 {
+    border-right: 1px solid red;
+}

@@ -7,8 +7,7 @@ import { AdministrationModule } from './administration/administration.module';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
+    imports: [
     CommonModule,
     HomeModule,
     ServicesModule,

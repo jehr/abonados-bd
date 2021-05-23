@@ -8,25 +8,25 @@
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <!-- <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let product of products">
+                <ul class="list-group list-contend">
+                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let estadio of estadios">
                         <div>
-                            {{ product.name }}
+                            {{ estadio.nombre }}
                         </div>
                         <div>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(product._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(product)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(product)"></i>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(estadio._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(estadio)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(estadio)"></i>
                         </div>
                     </li>
-                </ul> -->
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
-<app-modal-edit-product></app-modal-edit-product>
-<app-modal-view-product></app-modal-view-product>
+<app-modal-view-estadio></app-modal-view-estadio>
+
 
 <div class="modal fade" id="modalAddEstadio" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
     <div class="modal-dialog">

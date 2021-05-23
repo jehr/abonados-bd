@@ -18,9 +18,9 @@ export class EstadioService {
   constructor(private http: HttpClient,
     private modalService: ModalService) { }
 
-  getAllProducts(): Observable<any> {
+  getAllEstadios(): Observable<any> {
     // this.modalService.abrirModal('modalLoading');
-    const url = `${environment.urlApi}paquetes`;
+    const url = `${environment.urlApi}estadios`;
     return this.http.get(url).pipe(
       map(
         (res: any) => {
@@ -37,7 +37,7 @@ export class EstadioService {
     );
   }
 
-  getProductById(id: string): Observable<any> {
+  getEstadioById(id: string): Observable<any> {
     // this.modalService.abrirModal('modalLoading');
     const url = `${environment.urlApi}products/get-product?id=${id}`;
     return this.http.get(url).pipe(
@@ -56,26 +56,14 @@ export class EstadioService {
     );
   }
 
-  sendProduct(product: any): Observable<any> {
-    const url = `${environment.urlApi}products/add-product`;
+  sendEstadio(estadio: any): Observable<any> {
+    const url = `${environment.urlApi}estadios/add-estadio`;
     const token: string = sessionStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
-    const formd = new FormData();
-    formd.append('name', product.name);
-    formd.append('description', product.description);
-    formd.append('category', product.category);
-    formd.append('createdAt', product.createdAt);
-    formd.append('stock', product.stock);
-    formd.append('price', product.price);
-    for(let img of product.product) {
-      formd.append('image', img);
-    }
-    // this.modalService.abrirModal('modalLoading');
-
-    return this.http.post(url, formd, { headers }).pipe(
+    return this.http.post(url, estadio, { headers }).pipe(
       map(
         (res: any) => {
           // this.modalService.cerarModal('modalLoading');
@@ -91,7 +79,7 @@ export class EstadioService {
     );
   }
 
-  editProduct(product: any): Observable<any> {
+  editEstadio(product: any): Observable<any> {
     const url = `${environment.urlApi}products/edit-product`;
     const token: string = sessionStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -130,7 +118,7 @@ export class EstadioService {
     );
   }
 
-  deleteProduct(id: any): Observable<any> {
+  deleteEstadio(id: any): Observable<any> {
     const url = `${environment.urlApi}products/delete-product`;
     const token: string = sessionStorage.getItem('token');
     const headers = new HttpHeaders({

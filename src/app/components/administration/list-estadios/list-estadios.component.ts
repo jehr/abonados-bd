@@ -23,8 +23,19 @@ export class ListEstadiosComponent implements OnInit {
     public userService: UserService,
     private alertService: AlertService,) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+      this.loadEstadios();
+      setTimeout(() => {
+        $('.dropifys').dropify({
+          messages: {
+            'default': '',
+            'replace': '',
+            'remove': 'Eliminar',
+            'error': 'Ooops, something wrong happended.'
+          }
+        });
+      }, 100);
+    }
 
   showModalAdd(): void {
     this.modalService.abrirModal('modalAddEstadio');
@@ -38,11 +49,11 @@ export class ListEstadiosComponent implements OnInit {
     }
 
     const estadio = {
-      nameEstadio: this.nameEstadio,
-      cantEspectadores: this.cantEspectadores,
+      nombre: this.nameEstadio,
+      espectadores: this.cantEspectadores,
     }
 
-    this.estadioService.sendProduct(estadio).subscribe((res) => {
+    this.estadioService.sendEstadio(estadio).subscribe((res) => {
       if (res.ok) {
         this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
         $('.dropify-clear').click();
@@ -63,9 +74,15 @@ export class ListEstadiosComponent implements OnInit {
   }
 
   loadEstadios(): void {
-    this.estadioService.getAllProducts().subscribe((res) => {
+    this.estadioService.getAllEstadios().subscribe((res) => {
+      console.log('res :>> ', res);
       this.estadios = res.estadios;
     });
+  }
+
+  showModalView(id: string): void {
+    alert('juehdu');
+    this.modalService.abrirModal('modalViewEstadio');
   }
 
 }

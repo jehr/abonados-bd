@@ -1,22 +1,27 @@
 <div class="contenedor">
     <div class="container mt-4 fix-margin ">
         <div class="d-flex no-block h1-custom justify-content-between" style="padding-right: 30px; margin-bottom: 10px;">
-            <h4 class="card-title" style="color: #fff;"><span class="lstick"></span>Listado de paquetes</h4>
+            <h4 class="card-title" style="color: #fff;"><span class="lstick"></span>Listado de abonados</h4>
             <div class="d-flex flex-end">
-                <button class="btn btn-block btn-sm" style="background-color: white; color: black;" (click)="showModalAdd()">Agregar paquete</button>
             </div>
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
                 <!-- <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let product of products">
+                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let paquete of paquetes">
                         <div>
-                            {{ product.name }}
+                            {{ paquete.nombre_paquete }}
                         </div>
                         <div>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(product._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(product)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(product)"></i>
+                            {{ paquete.precio }}
+                        </div>
+                        <div>
+                            {{ paquete.descripcion_paquete }}
+                        </div>
+                        <div>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(paquete._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(paquete)"></i>
                         </div>
                     </li>
                 </ul> -->
@@ -25,8 +30,6 @@
     </div>
 </div>
 
-<app-modal-edit-product></app-modal-edit-product>
-<app-modal-view-product></app-modal-view-product>
 
 <!-- <div class="modal fade" id="modalAddProduct" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -35,13 +38,11 @@
                 <h5 class="modal-title" id="modalAddProductLabel">Agregar abonado</h5>
             </div>
             <div class="modal-body">
-                <input type="file" class="dropifys" data-allowed-file-extensions='["png","jpg", "jpeg"]' (change)="product = $event.target.files" multiple />
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="nameProduct">Nombre</label>
                         <input type="text" id="nameProduct" [(ngModel)]="name" class="form-control" placeholder="Nombre">
                     </div>
-
                 </div>
 
                 <div class="form-row my-2">

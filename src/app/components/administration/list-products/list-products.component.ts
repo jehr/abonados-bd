@@ -15,7 +15,7 @@ declare var $;
 })
 export class ListProductsComponent implements OnInit {
 
-  products: any[] = [];
+  abonados: any[] = [];
   name: string;
   description: string;
   category: string;
@@ -60,58 +60,8 @@ export class ListProductsComponent implements OnInit {
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe((res) => {
-      this.products = res.products;
-    });
-  }
-
-  saveProduct(): void {
-
-    if (!this.name || !this.description || !this.category || !this.stock || !this.price || !this.product) {
-      this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
-      return;
-    }
-
-
-    // let images = [];
-    // [...this.project].forEach((item: any) => {
-    //    images.push(item);
-    // });
-
-    const product = {
-      name: this.name,
-      description: this.description,
-      createdAt: moment().format('dd-mm-yyyy'),
-      category: this.category,
-      stock: this.stock,
-      price: this.price,
-      product: this.product
-    }
-
-    if (!this.validateFileExtension(this.product, ['png', 'jpg', 'jpeg'])) {
-      this.alertService.mostrarAlertaSimplesPorTipo('error', 'La imagen que intenta subir no tiene una extensión correcta (png, jpg ó jpeg).', 'Opps!');
-      return;
-    }
-    this.productService.sendProduct(product).subscribe((res) => {
-      if (res.ok) {
-        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
-        $('.dropify-clear').click();
-        if ($('.dropify-wrapper').hasClass('has-error')) {
-          $('.dropify-wrapper').removeClass('has-error');
-        }
-
-        this.name = '';
-        this.description = '';
-        this.category = '';
-        this.stock = '';
-        this.price = '';
-        this.date = null;
-
-        this.loadProducts();
-
-      } else {
-        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
-      }
-      this.modalService.cerarModal('modalAddProduct')
+      console.log('res.abonados user:>> ', res.abonados);
+      this.abonados = res.abonados;
     });
   }
 
