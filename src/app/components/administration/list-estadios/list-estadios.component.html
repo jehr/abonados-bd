@@ -57,6 +57,12 @@
                         <input type="number" id="cantEspectadores" [(ngModel)]="cantEspectadores" class="form-control" placeholder="Cantidad de espectadores">
                     </div>
                 </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="ciudadEstadio">Ciudad</label>
+                        <input type="text" id="ciudadEstadio" [(ngModel)]="ciudadEstadio" class="form-control" placeholder="Ciudad de ubicación">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddEstadio')" data-bs-dismiss="modal">Cerrar</button>
