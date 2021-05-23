@@ -58,7 +58,6 @@ export class ListProductsComponent implements OnInit {
 
   }
 
-
   loadProducts(): void {
     this.productService.getAllProducts().subscribe((res) => {
       this.products = res.products;

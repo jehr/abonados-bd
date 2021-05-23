@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  urlApi: 'https://tienda-virtual-api-v1.herokuapp.com/api/v1/',
-  // urlApi: 'https://abonados-bd-api.herokuapp.com/api/v1/',
-
+  // urlApi: 'https://tienda-virtual-api-v1.herokuapp.com/api/v1/',
+  urlApi: 'https://abonados-bd-api.herokuapp.com/api/v1/',
   // urlApi: 'http://localhost:3977/api/v1/'
 };
 

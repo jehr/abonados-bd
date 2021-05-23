@@ -1,0 +1,57 @@
+<div class="contenedor">
+    <div class="container mt-4 fix-margin ">
+        <div class="d-flex no-block h1-custom justify-content-between" style="padding-right: 30px; margin-bottom: 10px;">
+            <h4 class="card-title" style="color: #fff;"><span class="lstick"></span>Listado de estadios</h4>
+            <div class="d-flex flex-end">
+                <button class="btn btn-block btn-sm" style="background-color: white; color: black;" (click)="showModalAdd()">Agregar estadio</button>
+            </div>
+        </div>
+        <div class="row shadow w-100 ">
+            <div class="col">
+                <!-- <ul class="list-group list-contend">
+                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let product of products">
+                        <div>
+                            {{ product.name }}
+                        </div>
+                        <div>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(product._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(product)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(product)"></i>
+                        </div>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal-edit-product></app-modal-edit-product>
+<app-modal-view-product></app-modal-view-product>
+
+<div class="modal fade" id="modalAddEstadio" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddProductLabel">Agregar estadio</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="nameEstadio">Nombre</label>
+                        <input type="text" id="nameEstadio" [(ngModel)]="nameEstadio" class="form-control" placeholder="Nombre estadio">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="cantEspectadores">Espectadores</label>
+                        <input type="number" id="cantEspectadores" [(ngModel)]="cantEspectadores" class="form-control" placeholder="Cantidad de espectadores">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddEstadio')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveEstadio()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

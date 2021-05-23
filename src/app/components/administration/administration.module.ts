@@ -9,12 +9,15 @@ import { ModalViewProductComponent } from './modals/modal-view-product/modal-vie
 import { ModalEditProductComponent } from './modals/modal-edit-product/modal-edit-product.component';
 import { ModalAddProductComponent } from './modals/modal-add-product/modal-add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListPaquetesComponent } from './list-paquetes/list-paquetes.component';
+import { ListPartidosComponent } from './list-partidos/list-partidos.component';
+import { ListEstadiosComponent } from './list-estadios/list-estadios.component';
 // import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 
 @NgModule({
-  declarations: [AdministrationComponent, SidebarComponent, CardsComponent, ListProductsComponent, ModalViewProductComponent, ModalEditProductComponent, ModalAddProductComponent],
+  declarations: [AdministrationComponent, SidebarComponent, CardsComponent, ListProductsComponent, ModalViewProductComponent, ModalEditProductComponent, ModalAddProductComponent, ListPaquetesComponent, ListPartidosComponent, ListEstadiosComponent],
   imports: [
     CommonModule,
     ADMINISTRATION_ROUTES,
