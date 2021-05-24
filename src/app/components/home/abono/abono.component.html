@@ -1,0 +1,13 @@
+<div class="contenedor mt-4">
+    <div class="contenedor-2" style="border: 1px solid #e4dcdc;">
+        <div class="card-body">
+            <h5 class="card-title"><b>Paquete:</b> {{ abono.fk_paquete.nombre_paquete }} <span
+                    class="badge rounded-pill" [ngClass]="{'bg-secondary': (abono.fk_paquete.fk_partidos.length < 3), 'bg-success': abono.fk_paquete.fk_partidos.length > 2, 'bg-warning': abono.fk_paquete.fk_partidos.length > 6}">({{ abono.fk_paquete.fk_partidos.length }}) Partidos</span></h5>
+
+            <p class="card-text">
+                <b>Descripción: </b> {{ abono.fk_paquete.descripcion_paquete }}
+            </p>
+            <!-- <button (click)="comprar(paquete)" class="btn btn-primary">Abonarse</button> -->
+        </div>
+    </div>
+</div>

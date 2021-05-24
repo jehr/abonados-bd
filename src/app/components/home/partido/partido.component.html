@@ -1,0 +1,43 @@
+<div class="contenedor mt-4">
+    <div class="contenedor-2" style="border: 1px solid #e4dcdc;">
+        <div class="card-body row d-flex justify-content-between">
+            <div class="col-5">
+                <h5 class="card-title"><b>Partido del paquete </b>
+                    <span class="badge rounded-pill"
+                        [ngClass]="{'bg-secondary': partido.paquete == 'Principiante', 'bg-success': partido.paquete == 'Basico', 'bg-warning': partido.paquete == 'Premium'}">{{
+                        partido.paquete }}</span>
+                </h5>
+                <div>
+                    <p>
+                        <i class="fas fa-chess-king"></i>
+                        <span> <b> Local: </b>{{ partido.equipo_local }} Vs. </span>
+                        <i class="fas fa-chess-queen"></i>
+                        <span><b> Visitante: </b> {{ partido.equipo_visita }}</span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><b> Fecha:</b> {{ moment(partido.fecha_partido).format('DD/MM/YY') }} - {{ partido.hora }}</span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <i class="fas fa-futbol"></i>
+                        <span><b> Estadio: </b>{{ partido.fk_estadio.nombre }}</span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span> <b> Ciudad: </b>{{ partido.fk_estadio.ciudad }}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-5 d-flex justify-content-center">
+                <img src="../../../../assets/images/fotoSelec.png" class="img-fluid" style="width: 50%;" alt="">
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import { RouterModule, Routes } from "@angular/router";
 // import { AdministrationComponent } from "./components/administration/administration.component";
 import { HomePageComponent } from "./components/home/home-page/home-page.component";
+import { MisAbonosComponent } from "./components/home/mis-abonos/mis-abonos.component";
+import { MisPartidosComponent } from "./components/home/mis-partidos/mis-partidos.component";
 import { LoginGuard } from "./guards/login.guard";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
@@ -14,6 +16,21 @@ const appRoutes: Routes = [
         path: 'home',
         canActivate: [LoginGuard],
         component: HomePageComponent
+    },
+    {
+        path: 'paquetes',
+        canActivate: [LoginGuard],
+        component: HomePageComponent
+    },
+    {
+        path: 'abonos',
+        canActivate: [LoginGuard],
+        component: MisAbonosComponent
+    },
+    {
+        path: 'partidos',
+        canActivate: [LoginGuard],
+        component: MisPartidosComponent
     },
     // {
     //     path: 'admin',

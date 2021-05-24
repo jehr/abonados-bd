@@ -17,6 +17,7 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     component: HomePageComponent
   },
+  
   { 
     path: 'admin', 
     canActivate: [LoginGuard],

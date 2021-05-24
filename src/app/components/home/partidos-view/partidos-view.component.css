@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+    top: -100px;
+    border-radius: 20px;
+    box-shadow: #4e4c4d94 0px 4px 12px;
+    background-color: white;
+}
+
+
+
+.contenedor-products {
+    margin: 10px;
+}

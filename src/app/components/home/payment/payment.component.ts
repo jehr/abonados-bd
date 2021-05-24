@@ -1,5 +1,8 @@
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { AbonoService } from 'src/app/services/abono.service';
+import { AlertService } from 'src/app/services/alert.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { PaqueteService } from 'src/app/services/paquete.service';
 
@@ -16,7 +19,7 @@ export class PaymentComponent implements OnInit {
   numero_fila: string;
   numero_puesto: string;
 
-  constructor(public paqueteService: PaqueteService, private modalService: ModalService) { }
+  constructor(public paqueteService: PaqueteService, private modalService: ModalService, private abonoService: AbonoService, private alertaService: AlertService) { }
 
   ngOnInit(): void {
     console.log(this.paqueteService.paqueteSelected)
@@ -24,6 +27,17 @@ export class PaymentComponent implements OnInit {
 
   comprar() {
     console.log('this.nombre_abonado :>> ', this.localidad);
+  }
+
+  abonarse(paquete: any): void {
+    this.abonoService.abonarUsuario(paquete).subscribe(res => {
+      if(res.ok) {
+        this.alertaService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        this.cerrarModal();
+      }else {
+        this.alertaService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+    })
   }
 
   cerrarModal(): void {

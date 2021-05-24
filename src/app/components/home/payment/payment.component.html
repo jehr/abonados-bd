@@ -12,14 +12,17 @@
                                 [value]="paqueteService.paqueteSelected.nombre_paquete" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" readonly>
                             <label for="exampleInputEmail1" class="my-2">Partidos</label>
-                            <ul class="list-group ">
+                            <ul class="list-group text-center">
                                 <li class="list-group-item" *ngFor="let partido of paqueteService.paqueteSelected.fk_partidos">
                                     {{partido.equipo_local}} Vs. {{partido.equipo_visita}}
                                 </li>
                             </ul>
+                            <div class="text-center my-2">
+                                <b>${{ paqueteService.paqueteSelected.precio }}</b>
+                            </div>
                         </div>
 
-                        <button class="btn btn-block btn-primary mt-2">Abonarse</button>
+                        <button class="btn btn-block btn-primary mt-2" (click)="abonarse(paqueteService.paqueteSelected)">Abonarse</button>
                         <button class="btn btn-block btn-default" (click)="cerrarModal()">Cerrar</button>
                     </div>
                 </div>
