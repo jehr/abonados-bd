@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   signIn(): void {
     if (!this.password && !this.correo) { return; }
-    this.userService.login(this.correo, this.password).subscribe((res: any) => {
+    this.userService.login(this.correo, this.password).subscribe(
+      (res: any) => {
       if (res.accessToken) {
           let user: any = this.userService.getUserLogged();
           if(user.role != 'admin') {
