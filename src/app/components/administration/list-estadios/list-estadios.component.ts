@@ -15,9 +15,16 @@ declare var $;
 export class ListEstadiosComponent implements OnInit {
 
   estadios: any[] = [];
+  estadio_view: any[] = [];
   nameEstadio: string;
   cantEspectadores: string;
+<<<<<<< HEAD
   ciudadEstadio: string;
+=======
+  espectadores_view: string;
+  nombre_view: string;
+  ciudad_view: string;
+>>>>>>> main
 
   constructor(private estadioService: EstadioService,
     public modalService: ModalService,
@@ -84,7 +91,16 @@ export class ListEstadiosComponent implements OnInit {
   }
 
   showModalView(id: string): void {
-    this.modalService.abrirModal('modalViewEstadio');
+    this.estadioService.getEstadioById(id).subscribe((res) => {
+      if(res.ok) {
+        this.espectadores_view = res.estadio.espectadores;
+        this.nombre_view = res.estadio.nombre;
+        this.ciudad_view = res.estadio.ciudad;
+        this.modalService.abrirModal('modalViewPartido');
+      } else {
+        return;
+      }
+    });
   }
 
   deleteItem(item: any): void {

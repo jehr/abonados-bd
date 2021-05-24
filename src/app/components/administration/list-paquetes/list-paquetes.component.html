@@ -91,29 +91,40 @@
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="nombre_paquete">Nombre Paquete</label>
-                        <input type="text" id="nombre_paquete" readonly class="form-control" placeholder="Nombre estadio">
+                        <input type="text" id="nombre_paquete" readonly class="form-control" placeholder="{{ nombre_view }}">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="precio">Precio</label>
-                        <input type="text" id="precio" readonly class="form-control" placeholder="Nombre estadio">
+                        <input type="text" id="precio" readonly class="form-control" placeholder="{{ precio_view }}">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="descripcion_paquete">Descripcion</label>
-                        <input type="text" id="descripcion_paquete" readonly class="form-control" placeholder="Cantidad de espectadores">
+                        <textarea type="text" id="descripcion_paquete" readonly class="form-control"> {{ descripcion_view }} </textarea>
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="descripcion_paquete">Partidos</label>
-                        <select class="custom-select" id="fk_partidos">
-                            <option *ngFor="let partido of partidos" [value]="partido._id">
-                                {{ partido.equipo_local }} vs {{ partido.equipo_visita }}
-                            </option>
-                        </select>
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Equipo local</th>
+                                    <th scope="col">Equipo visita</th>
+                                    <!-- <th scope="col">Fecha</th> -->
+                                    <th scope="col">Hora</th>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let view of paquetes_view">
+                                <th>{{ view.equipo_local }}</th>
+                                <td>{{ view.equipo_visita }}</td>
+                                <!-- <td>{{ view.fecha_partido }}</td> -->
+                                <td>{{ view.hora }}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

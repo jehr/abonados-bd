@@ -23,6 +23,10 @@ export class ListProductsComponent implements OnInit {
   price: string;
   date: any;
   product: File[];
+  data_usuario;
+  data_paquete;
+  data_estadio;
+
 
   constructor(
     private productService: ProductService,
@@ -46,7 +50,21 @@ export class ListProductsComponent implements OnInit {
   }
 
   showModalView(id: string): void {
-    this.modalService.abrirModal('modalViewProduct');
+    this.productService.getProductById(id).subscribe((res) => {
+      if(res.ok) {
+        console.log('res :>> ', res);
+        this.data_usuario = res.abonado.fk_usuario;
+        this.data_paquete = res.abonado.fk_paquete;
+        this.data_estadio = res.abonado.fk_estadio;
+        console.log('this.data_usuario :>> ', this.data_usuario);
+        console.log('this.data_paquete :>> ', this.data_paquete);
+        console.log('this.data_estadio :>> ', this.data_estadio);
+
+        this.modalService.abrirModal('modalViewProduct');
+      } else {
+        return;
+      }
+    });
   }
 
   showModalEdit(product: any): void {
