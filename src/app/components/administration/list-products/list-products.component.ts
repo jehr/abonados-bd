@@ -24,6 +24,11 @@ export class ListProductsComponent implements OnInit {
   date: any;
   product: File[];
   nombre_view: string;
+  documento_view: string;
+  ciudad_view: string;
+  direccion_view: string;
+  estadio_view: string;
+  paquete_view: string
 
 
   constructor(
@@ -50,13 +55,13 @@ export class ListProductsComponent implements OnInit {
   showModalView(id: string): void {
     this.productService.getProductById(id).subscribe((res) => {
       if(res.ok) {
-        // console.log('res :>> ', res);
-        // this.data_usuario = res.abonado.fk_usuario;
-        // this.data_paquete = res.abonado.fk_paquete;
-        // this.data_estadio = res.abonado.fk_estadio;
-        // console.log('this.data_usuario :>> ', this.data_usuario);
-        // console.log('this.data_paquete :>> ', this.data_paquete);
-        // console.log('this.data_estadio :>> ', this.data_estadio);
+        console.log('res :>> ', res.abonado);
+        this.nombre_view = res.abonado.fk_usuario.nombre;
+        this.documento_view = res.abonado.fk_usuario.numero_documento;
+        this.ciudad_view = res.abonado.fk_usuario.ciudad;
+        this.direccion_view = res.abonado.fk_usuario.direccion;
+        this.estadio_view = res.abonado.fk_estadio.nombre;
+        // this.paquete_view = res.abonado.fk_paquete.nombre_paquete;
 
         this.modalService.abrirModal('modalViewProduct');
       } else {

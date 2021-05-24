@@ -19,9 +19,14 @@ export class ListEstadiosComponent implements OnInit {
   nameEstadio: string;
   cantEspectadores: string;
   ciudadEstadio: string;
+  _id:string;
+  nameEstadioEdit: string;
+  cantEspectadoresEdit: string;
+  ciudadEstadioEdit: string;
   espectadores_view: string;
   nombre_view: string;
   ciudad_view: string;
+  id_view: string;
 
   constructor(private estadioService: EstadioService,
     public modalService: ModalService,
@@ -111,5 +116,39 @@ export class ListEstadiosComponent implements OnInit {
     }
     )
   };
+
+  showModalEdit(id: string): void {
+    this.estadioService.getEstadioById(id).subscribe((res) => {
+      if(res.ok) {
+        console.log('res.estadio :>> ', res.estadio);
+        this.espectadores_view = res.estadio.espectadores;
+        this.nombre_view = res.estadio.nombre;
+        this.id_view = res.estadio._id;
+        this.ciudad_view = res.estadio.ciudad;
+        this.modalService.abrirModal('modalEditPartido');
+      } else {
+        return;
+      }
+    });
+  }
+
+  editEstadio() {
+
+    // if (!this.nameEstadio || !this.cantEspectadores || !this.ciudadEstadio) {
+    //   this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
+    //   return;
+    // }
+
+    const estadio = {
+      nombre: this.nameEstadioEdit,
+      espectadores: this.cantEspectadoresEdit,
+      ciudad: this.ciudadEstadioEdit,
+      _id: this._id
+    }
+
+    console.log('estadio :>> ', estadio);
+
+    
+  }
 
 }
