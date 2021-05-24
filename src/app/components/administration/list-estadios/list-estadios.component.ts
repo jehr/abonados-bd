@@ -18,13 +18,10 @@ export class ListEstadiosComponent implements OnInit {
   estadio_view: any[] = [];
   nameEstadio: string;
   cantEspectadores: string;
-<<<<<<< HEAD
   ciudadEstadio: string;
-=======
   espectadores_view: string;
   nombre_view: string;
   ciudad_view: string;
->>>>>>> main
 
   constructor(private estadioService: EstadioService,
     public modalService: ModalService,
