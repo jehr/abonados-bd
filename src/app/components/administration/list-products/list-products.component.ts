@@ -29,6 +29,9 @@ export class ListProductsComponent implements OnInit {
   direccion_view: string;
   estadio_view: string;
   paquete_view: string
+  data_usuario: any = {};
+  data_paquete: any = {};
+  data_estadio:  any = {};
 
 
   constructor(
@@ -62,6 +65,13 @@ export class ListProductsComponent implements OnInit {
         this.direccion_view = res.abonado.fk_usuario.direccion;
         this.estadio_view = res.abonado.fk_estadio.nombre;
         // this.paquete_view = res.abonado.fk_paquete.nombre_paquete;
+        console.log('res :>> ', res);
+        this.data_usuario = res.abonado.fk_usuario;
+        this.data_paquete = res.abonado.fk_paquete;
+        this.data_estadio = res.abonado.fk_estadio;
+        // console.log('this.data_usuario :>> ', this.data_usuario);
+        // console.log('this.data_paquete :>> ', this.data_paquete);
+        // console.log('this.data_estadio :>> ', this.data_estadio);
 
         this.modalService.abrirModal('modalViewProduct');
       } else {

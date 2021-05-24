@@ -8,11 +8,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProductComponent } from './products/product/product.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormsModule } from '@angular/forms';
+import { PaqueteComponent } from './paquete/paquete.component';
 
 
 
 @NgModule({
-  declarations: [HomePageComponent, HeroComponent, MainComponent, NavbarComponent, ProductComponent, PaymentComponent],
+  declarations: [HomePageComponent, HeroComponent, MainComponent, NavbarComponent, ProductComponent, PaymentComponent, PaqueteComponent],
   imports: [
     CommonModule,
     GeneralModule,

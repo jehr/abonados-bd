@@ -21,8 +21,17 @@
 }
 
 .title-loading {
-    color: #FFA5B7;
+    color: #000;
     font-size: 35px;
     text-align: center;
     margin-top: 10px;
+}
+
+.imagen-seleccion {
+    display: flex;
+    justify-content: center;
+}
+
+.imagen-seleccion img {
+    width: 70%;
 }

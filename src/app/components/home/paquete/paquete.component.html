@@ -1,0 +1,12 @@
+<div class="contenedor mt-4">
+    <div class="contenedor-2" style="border: 1px solid #e4dcdc;">
+        <div class="card-body">
+            <h5 class="card-title">{{ paquete.nombre_paquete }}</h5>
+            <b>${{ paquete.precio }}</b>
+            <p class="card-text">
+                {{ paquete.descripcion_paquete }}
+            </p>
+            <button (click)="comprar(paquete)" class="btn btn-primary">Abonarse</button>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-<div class="container">
-    <app-product class="contenedor-products" *ngFor="let product of productos" [product]="product">
-    </app-product>
+<div class="container pt-4">
+    <h2 class="text-center">Paquetes </h2>
+    <app-paquete class="contenedor-products" *ngFor="let paquete of paquetes" [paquete]="paquete"></app-paquete>
 </div>
+<app-payment></app-payment>

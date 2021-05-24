@@ -22,6 +22,7 @@ export class ListPartidosComponent implements OnInit {
   equipo_local_view: string;
   equipo_visita_view: string;
   hora_view: string;
+  moment: any = moment;
 
 
   constructor(private partidoService: PartidoService,
