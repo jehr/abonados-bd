@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { AlertService } from 'src/app/services/alert.service';
 import { ModalService } from 'src/app/services/modal.service';
 import * as moment from 'moment';
@@ -20,15 +21,19 @@ export class ListPaquetesComponent implements OnInit {
   nombre_paquete: string;
   precio: string;
   descripcion_paquete: string;
-  fk_partidos: any[];
+  fk_partidos: any = {};
   nombre_view: string;
   precio_view: string;
   descripcion_view: string;
   paqueteEdit: string;
   precioEdit: string;
   descripcionEdit: string;
-  fk_partidos_edit: string;
+  fk_partidos_edit: any = {};
   _id: string;
+
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings: IDropdownSettings;
 
 
   constructor(private paqueteService: PaqueteService,
@@ -49,7 +54,7 @@ export class ListPaquetesComponent implements OnInit {
             'error': 'Ooops, something wrong happended.'
           }
         });
-      }, 100);
+      }, 100);      
     }
 
   showModalAdd(): void {
@@ -63,11 +68,16 @@ export class ListPaquetesComponent implements OnInit {
       return;
     }
 
+    let partidos = [];
+    for(let i = 0; i < this.fk_partidos.length; i++){
+      partidos.push(this.fk_partidos[i].item_id);
+    }
+
     const paquete = {
       nombre_paquete: this.nombre_paquete,
       precio: this.precio,
       descripcion_paquete: this.descripcion_paquete,
-      fk_partidos: this.fk_partidos,
+      fk_partidos: partidos,
     }
 
     this.paqueteService.sendPaquete(paquete).subscribe((res) => {
@@ -88,7 +98,7 @@ export class ListPaquetesComponent implements OnInit {
       } else {
         this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
       }
-      this.modalService.cerarModal('modalAddEstadio')
+      this.modalService.cerarModal('modalAddPaquete')
     });
   }
 
@@ -100,8 +110,25 @@ export class ListPaquetesComponent implements OnInit {
 
   loadPartidos(): void {
     this.partidoService.getAllPartidos().subscribe((res) => {
-      console.log('res.partidos :>> ', res.partidos);
       this.partidos = res.partidos;
+      console.log('res.partidos :>> ', this.partidos);
+      let dataArray = [];
+      for(let i = 0; i < this.partidos.length; i++){
+        let item_id = this.partidos[i]._id;
+        let item_text = this.partidos[i].equipo_local + ' VS ' + this.partidos[i].equipo_visita;
+        dataArray.push({item_id, item_text});
+      }
+      this.dropdownList = dataArray;
+      this.dropdownSettings = {
+        singleSelection: false,
+        idField: 'item_id',
+        textField: 'item_text',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 3,
+        allowSearchFilter: true
+      };
+
     });
   }
 
@@ -135,11 +162,21 @@ export class ListPaquetesComponent implements OnInit {
     this.paqueteService.getPaqueteById(id).subscribe((res) => {
       if(res.ok) {
         console.log('res :>> ', res);
-        this.fk_partidos_edit = res.paquete.fk_partidos;
         this.paqueteEdit = res.paquete.nombre_paquete;
         this.precioEdit = res.paquete.precio;
         this.descripcionEdit = res.paquete.descripcion_paquete;
         this._id = res.paquete._id;
+        this.fk_partidos_edit = res.paquete.fk_partidos;
+
+        console.log('this.fk_partidos_edit :>> ', this.fk_partidos_edit);
+
+        let dataArraySelect = [];
+        for(let i = 0; i < this.fk_partidos_edit.length; i++){
+          let item_id = this.fk_partidos_edit[i]._id;
+          let item_text = this.fk_partidos_edit[i].equipo_local + ' VS ' + this.fk_partidos_edit[i].equipo_visita;
+          dataArraySelect.push({item_id, item_text});
+        }
+        this.selectedItems = dataArraySelect;
         this.modalService.abrirModal('modalEditPaquete');
       } else {
         return;
@@ -149,9 +186,14 @@ export class ListPaquetesComponent implements OnInit {
 
   editPaquete() {
 
-    if (!this.paqueteEdit || !this.precioEdit || !this.descripcionEdit) {
+    if (!this.paqueteEdit || !this.precioEdit || !this.descripcionEdit || !this.selectedItems ) {
       this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
       return;
+    }
+
+    let partidos = [];
+    for(let i = 0; i < this.selectedItems.length; i++){
+      partidos.push(this.selectedItems[i].item_id);
     }
 
     const estadio = {
@@ -159,7 +201,7 @@ export class ListPaquetesComponent implements OnInit {
       precio: this.precioEdit,
       descripcion_paquete: this.descripcionEdit,
       id: this._id,
-      fk_partidos: this.fk_partidos_edit
+      fk_partidos: partidos
     }
 
     this.paqueteService.editPaquete(estadio).subscribe((res) => {
@@ -182,6 +224,13 @@ export class ListPaquetesComponent implements OnInit {
       }
       this.modalService.cerarModal('modalEditPaquete')
     });
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
 }

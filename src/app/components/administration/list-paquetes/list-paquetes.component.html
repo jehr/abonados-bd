@@ -64,11 +64,8 @@
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="descripcion_paquete">Partidos</label>
-                        <select class="custom-select" id="fk_partidos" [(ngModel)]="fk_partidos">
-                            <option *ngFor="let partido of partidos" [value]="partido._id">
-                                {{ partido.equipo_local }} vs {{ partido.equipo_visita }}
-                            </option>
-                        </select>
+                        <ng-multiselect-dropdown [placeholder]="'Seleccionar'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="fk_partidos" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                        </ng-multiselect-dropdown>
                     </div>
                 </div>
             </div>
@@ -164,11 +161,8 @@
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="descripcion_paquete">Partidos</label>
-                        <select class="custom-select" id="fk_partidos_edit" [(ngModel)]="fk_partidos_edit">
-                            <option *ngFor="let partido of partidos" [value]="partido._id">
-                                {{ partido.equipo_local }} vs {{ partido.equipo_visita }}
-                            </option>
-                        </select>
+                        <ng-multiselect-dropdown [placeholder]="'Seleccionar'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                        </ng-multiselect-dropdown>
                     </div>
                 </div>
             </div>

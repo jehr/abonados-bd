@@ -31,7 +31,7 @@ import { APP_ROUTES } from './app.routes';
     GeneralModule,
     ServicesModule,
     LoginModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     // {

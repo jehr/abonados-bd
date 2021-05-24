@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
+
 declare var $;
 
 @Component({
@@ -32,6 +33,8 @@ export class ListProductsComponent implements OnInit {
   data_usuario: any = {};
   data_paquete: any = {};
   data_estadio:  any = {};
+  moment: any = moment;
+
 
 
   constructor(
@@ -63,14 +66,13 @@ export class ListProductsComponent implements OnInit {
         this.documento_view = res.abonado.fk_usuario.numero_documento;
         this.ciudad_view = res.abonado.fk_usuario.ciudad;
         this.direccion_view = res.abonado.fk_usuario.direccion;
-        this.estadio_view = res.abonado.fk_estadio.nombre;
-        // this.paquete_view = res.abonado.fk_paquete.nombre_paquete;
+        this.paquete_view = res.abonado.fk_paquete.nombre_paquete;
         console.log('res :>> ', res);
         this.data_usuario = res.abonado.fk_usuario;
-        this.data_paquete = res.abonado.fk_paquete;
+        this.data_paquete = res.abonado.fk_paquete.fk_partidos;
         this.data_estadio = res.abonado.fk_estadio;
         // console.log('this.data_usuario :>> ', this.data_usuario);
-        // console.log('this.data_paquete :>> ', this.data_paquete);
+        console.log('this.data_paquete :>> ', this.data_paquete);
         // console.log('this.data_estadio :>> ', this.data_estadio);
 
         this.modalService.abrirModal('modalViewProduct');
