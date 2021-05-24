@@ -119,22 +119,20 @@ export class EstadioService {
   }
 
   deleteEstadio(id: any): Observable<any> {
-    const url = `${environment.urlApi}products/delete-product`;
+    const url = `${environment.urlApi}estadios/delete-estadio`;
     const token: string = sessionStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    // this.modalService.abrirModal('modalLoading');
+
     return this.http.post(url, {id}, {headers}).pipe(
       map(
         (res: any) => {
-          // this.modalService.cerarModal('modalLoading');
           return res;
         }
       ),
       catchError(
         (error: any) => {
-          // this.modalService.cerarModal('modalLoading');
           return error;
         }
       )
