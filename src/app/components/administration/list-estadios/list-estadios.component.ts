@@ -17,6 +17,7 @@ export class ListEstadiosComponent implements OnInit {
   estadios: any[] = [];
   nameEstadio: string;
   cantEspectadores: string;
+  ciudadEstadio: string;
 
   constructor(private estadioService: EstadioService,
     public modalService: ModalService,
@@ -43,7 +44,7 @@ export class ListEstadiosComponent implements OnInit {
 
   saveEstadio(): void {
 
-    if (!this.nameEstadio || !this.cantEspectadores) {
+    if (!this.nameEstadio || !this.cantEspectadores || !this.ciudadEstadio) {
       this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
       return;
     }
@@ -51,6 +52,7 @@ export class ListEstadiosComponent implements OnInit {
     const estadio = {
       nombre: this.nameEstadio,
       espectadores: this.cantEspectadores,
+      ciudad: this.ciudadEstadio
     }
 
     this.estadioService.sendEstadio(estadio).subscribe((res) => {
@@ -63,6 +65,7 @@ export class ListEstadiosComponent implements OnInit {
 
         this.nameEstadio = '';
         this.cantEspectadores = '';
+        this.ciudadEstadio = '';
 
         this.loadEstadios();
 
