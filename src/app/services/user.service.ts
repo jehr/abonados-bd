@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ModalService } from './modal.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AlertService } from './alert.service';
 declare var $;
 
 @Injectable({
@@ -20,7 +21,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private alertService: AlertService
   ) {
     this.token = sessionStorage.getItem("token") || '';
   }
@@ -45,6 +47,7 @@ export class UserService {
         }),
         catchError((err: any) => {
           this.modalService.cerarModal('modalLoading');
+          this.alertService.mostrarAlertaSimplesPorTipo('error', err.error.message, '');
           return Observable.throw(err);
         })
       );
