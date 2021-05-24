@@ -28,7 +28,12 @@ export class LoginComponent implements OnInit {
     if (!this.password && !this.correo) { return; }
     this.userService.login(this.correo, this.password).subscribe((res: any) => {
       if (res.accessToken) {
-        this.router.navigate(['/home']);
+          let user: any = this.userService.getUserLogged();
+          if(user.role != 'admin') {
+            this.router.navigate(['/home']);
+          } else {
+            this.router.navigate(['/admin/dashboard']);
+          }
         this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
       }else {
         this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');

@@ -67,7 +67,31 @@ export class UserService {
     return (!this.token) ? false : true;
   }
 
-  register(name: string, lastname:string, email:string, phone:number, password:string, repeatPassword:string){
+  register(nombre: string, apellidos:string, correo:string, celular:string, tipo_documento:string , numero_documento:string , direccion:string , ciudad:string, password:string, repeatPassword:string){
+    
+    let user = { nombre, apellidos, correo, celular, tipo_documento , numero_documento , direccion , ciudad, password, repeatPassword};
+    let url = `${environment.urlApi}sign-up`;
+    this.modalService.abrirModal('modalLoading');
+
+    return this.http.post(url, user)
+    .pipe(
+      map((respuesta:any) => {
+        this.modalService.cerarModal('modalLoading');
+        if (respuesta) {
+          return respuesta;
+        }
+      }),
+      filter((resp: any, index) => {
+        sessionStorage.setItem('token', resp.accessToken);
+        this.token = resp.accessToken;
+        return resp;
+      }),
+      catchError((err: any) => {
+        this.modalService.cerarModal('modalLoading');
+        return Observable.throw(err);
+      })
+    );
+
     return;
   }
 

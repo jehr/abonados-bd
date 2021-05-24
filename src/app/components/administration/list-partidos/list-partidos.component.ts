@@ -166,7 +166,7 @@ export class ListPartidosComponent implements OnInit {
       equipo_visita: this.equipoVisitaEdit,
       fecha_partido: this.fechaEdit,
       hora: this.horaEdit,
-      ciudad: this.fk_estadio_edit,
+      fk_estadio: this.fk_estadio_edit,
       id: this._id
     }
 

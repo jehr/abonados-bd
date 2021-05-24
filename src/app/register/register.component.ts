@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/services/alert.service';
+import * as moment from 'moment';
+import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { AlertService } from '../services/alert.service';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,14 +11,14 @@ import { UserService } from '../services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  name: string;
-  lastname: string;
-  email: string;
-  phone: number;
-  numero_documento: number;
-  cedula: number;
-  tarjeta_identidad: number;
-  cedula_extranjera: number;
+  nombre: string;
+  apellidos: string;
+  correo: string;
+  celular: string;
+  tipo_documento: string;
+  numero_documento: string;
+  direccion: string;
+  ciudad: string;
   password: string;
   repeatPassword: string;
 
@@ -30,23 +31,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.router.navigate(['/login']);
 
-    if (!this.name && !this.lastname && !this.email && !this.phone  && !this.password && !this.repeatPassword)  { return; }
+    this.tipo_documento = 'Cedula';
+
+    console.log('this.nombre :>> ', this.nombre);
+
+    if (!this.nombre && !this.apellidos && !this.correo && !this.celular  && !this.tipo_documento && !this.numero_documento && !this.direccion && !this.ciudad  && !this.password && !this.repeatPassword)  { return; }
     this.userService.register(
-       this.name, this.lastname, this.email, this.phone, this.password, this.repeatPassword)
-      //.subscribe((res: any) => {
-      //   if (res.accessToken) {
-      //     this.router.navigate(['/login']);
-      //     this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
-      //   }else {
-      //     this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
-      //   }
-      // })
-
-  }
-
-  backLogin() {
+       this.nombre, this.apellidos, this.correo, this.celular, this.tipo_documento, this.numero_documento, this.direccion, this.ciudad, this.password, this.repeatPassword)
+      .subscribe((res: any) => {
+        if (res.accessToken) {
+          this.router.navigate(['/login']);
+          this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        }else {
+          this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        }
+      })
     this.router.navigate(['/login']);
   }
 

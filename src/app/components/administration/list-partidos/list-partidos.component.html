@@ -24,7 +24,7 @@
                         <td>{{ partido.hora }}</td>
                         <td>{{ partido.equipo_local }}</td>
                         <td>{{ partido.equipo_visita }}</td>
-                        <td>{{ partido.estadio }}</td>
+                        <td>{{ partido.fk_estadio.nombre }}</td>
                         <td>
                             <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(partido._id)"></i>
                             <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(partido._id)"></i>
