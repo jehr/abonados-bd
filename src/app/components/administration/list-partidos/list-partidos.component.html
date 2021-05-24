@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tr *ngFor="let partido of partidos">
-                        <th scope="row">{{ partido.fecha_partido}}</th>
+                        <th scope="row">{{ moment(partido.fecha_partido).format('DD-MM-Y') }}</th>
                         <td>{{ partido.hora }}</td>
                         <td>{{ partido.equipo_local }}</td>
                         <td>{{ partido.equipo_visita }}</td>

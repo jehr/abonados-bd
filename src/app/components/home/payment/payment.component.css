@@ -1,102 +1,41 @@
-        .modal-body {
-            width: 800px;
+        .vertical-alignment-helper {
+            /* display:table; */
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            height: 100%;
+            width: 100%;
+            pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            pointer-events:none;
+        }
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width:inherit;
+            max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+            height:inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+            pointer-events: all;
         }
         
-        .name_abono {
-            border: none;
-            border-bottom: 1px solid #fff;
-            background: transparent;
-            outline: none;
-            height: 40px;
-            color: #fff;
-            font-size: 16px;
-            padding: 30px;
-        }
-        
-        .price {
-            border: none;
-            background: transparent;
-        }
-        
-        select {
-            border: none;
-            border-bottom: 1px solid #fff;
-            background: transparent;
-            outline: none;
-            height: 40px;
-            font-size: 16px;
-        }
-        
-        .register-box h1 {
-            margin: 0;
-            padding: 0 0 20px;
-            text-align: center;
-            font-size: 22px;
-        }
-        
-        .register-box label {
-            margin: 0;
-            padding: 0;
-            font-weight: bold;
-        }
-        
-        .register-box button {
-            border: none;
-            outline: none;
-            height: 40px;
-            background: #4e494a;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 20px;
-            padding-bottom: 20px;
-        }
-        
-        .register-box button:hover {
-            cursor: pointer;
-            background: #FFFF;
+        .title-loading {
             color: #000;
+            font-size: 35px;
+            text-align: center;
+            margin-top: 10px;
         }
         
-        .register-box a {
-            text-decoration: none;
-            font-size: 12px;
-            line-height: 20px;
-            color: darkgrey;
+        .imagen-seleccion {
+            display: flex;
+            justify-content: center;
         }
         
-        .register-box a:hover {
-            color: #fff;
+        .imagen-seleccion img {
+            width: 70%;
         }
         
-        .button-check {
-            padding: 30px;
-        }
-        
-        @media screen and (max-width: 300px) {
-            .col-25,
-            .col-75,
-            input[type=text] {
-                width: 10%;
-                margin-top: 0;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .register-box {
-                width: 85%;
-                height: 80%;
-                top: 50%;
-                left: 50%;
-                position: absolute;
-                transform: translate(-50%, -50%);
-                box-sizing: border-box;
-                padding: 10px 10px;
-                border-radius: 25px;
-            }
-            .register-box h1 {
-                margin: 0;
-                padding: 40px 0px 10px;
-                text-align: center;
-                font-size: 22px;
-            }
-        }

@@ -1,75 +1,92 @@
 <div class="modal fade" id="modalAbonado" tabindex="-1" aria-labelledby="modalLoadingLabel" aria-hidden="true">
-    <div class="vertical-alignment-helper" style="width: 800px;">
+    <div class="vertical-alignment-helper">
         <div class="modal-dialog modal-dialog-centered vertical-align-center">
-            <div class="modal-content" style="width: 800px; margin-left: 125px; border-radius: 50px; box-shadow: 0px 0px 20px 0px #00000094;">
-                <div class="modal-body" style="background-color: gray;">
-                    <div class="register-box">
-                        <h1>Vive la pasión de la tricolor</h1>
-                        <div class="form-register">
-                            <div class="container">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="exampleInputEmail1" class="form-label">Nombre abono</label>
-                                            <input [(ngModel)]="nombre_abono" type="text" class="form-control name_abono" name="Clasico" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="padding-top: 30px;">
-                                        <div class="col-md-6">
-                                            <label for="exampleInputEmail1" class="form-label"></label>
-                                            <select [(ngModel)]="localidad" class="form-select" aria-label="Default select example">
-                                                <option selected>Localidad</option>
-                                                <option value="1">Norte alta</option>
-                                                <option value="2">Norte baja</option>
-                                                <option value="3">Oriental alta</option>
-                                                <option value="4">Oriental baja</option>
-                                                <option value="5">Sur alta</option>
-                                                <option value="6">Sur baja</option>
-                                                <option value="7">Occidental alta</option>
-                                                <option value="8">Occidental baja</option>
-                                                <option value="9">Palco Oriental</option>
-                                                <option value="10">Palco Occidental</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="exampleInputEmail1" class="form-label">Precio abono</label>
-                                            <input [(ngModel)]="precio" type="text" class="form-control price">
-                                        </div>
-                                    </div>
-                                    <div class="row pt-2">
-                                        <div class="col-md-6">
-                                            <select [(ngModel)]="numero_fila" class="form-select" aria-label="Default select example">
-                                                <option  selected>Numero de fila</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select [(ngModel)]="numero_puesto" class="form-select" aria-label="Default select example">
-                                                <option selected>Numero de puesto</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row button-check">
-                                        <div class="col-md-3 col-xs-5"></div>
-                                        <div class="col-md-6">
-                                            <button (click)="comprar()" class="btn-block" type="button">
-                                                Registrarse
-                                            </button>
-                                        </div>
-                                        <div class="col-md-3 col-xs-5"></div>
-                                    </div>
-                                </form>
-                            </div>
+            <div class="modal-content"
+                style="border-radius: 50px; box-shadow: 0px 0px 20px 0px #00000094;">
+                <div class="modal-body">
+                    <div class="register-box p-4">
+                        <h3 class="text-center">Vive la pasión de la tricolor</h3>
+                        <div>
+                            <label for="exampleInputEmail1">Nombre del paquete</label>
+                            <input type="email" class="form-control"
+                                [value]="paqueteService.paqueteSelected.nombre_paquete" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" readonly>
+                            <label for="exampleInputEmail1" class="my-2">Partidos</label>
+                            <ul class="list-group ">
+                                <li class="list-group-item" *ngFor="let partido of paqueteService.paqueteSelected.fk_partidos">
+                                    {{partido.equipo_local}} Vs. {{partido.equipo_visita}}
+                                </li>
+                            </ul>
                         </div>
+
+                        <button class="btn btn-block btn-primary mt-2">Abonarse</button>
+                        <button class="btn btn-block btn-default" (click)="cerrarModal()">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- <div class="form-register">
+    <div class="container">
+        <div class="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="exampleInputEmail1" class="form-label">Nombre abono</label>
+                    <input [(ngModel)]="nombre_abono" type="text" class="form-control name_abono" name="Clasico">
+                </div>
+            </div>
+            <div class="row" style="padding-top: 30px;">
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1" class="form-label"></label>
+                    <select [(ngModel)]="localidad" class="form-select" aria-label="Default select example">
+                        <option selected>Localidad</option>
+                        <option value="1">Norte alta</option>
+                        <option value="2">Norte baja</option>
+                        <option value="3">Oriental alta</option>
+                        <option value="4">Oriental baja</option>
+                        <option value="5">Sur alta</option>
+                        <option value="6">Sur baja</option>
+                        <option value="7">Occidental alta</option>
+                        <option value="8">Occidental baja</option>
+                        <option value="9">Palco Oriental</option>
+                        <option value="10">Palco Occidental</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="exampleInputEmail1" class="form-label">Precio abono</label>
+                    <input [(ngModel)]="precio" type="text" class="form-control price">
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-6">
+                    <select [(ngModel)]="numero_fila" class="form-select" aria-label="Default select example">
+                        <option  selected>Numero de fila</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <select [(ngModel)]="numero_puesto" class="form-select" aria-label="Default select example">
+                        <option selected>Numero de puesto</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row button-check">
+                <div class="col-md-3 col-xs-5"></div>
+                <div class="col-md-6">
+                    <button (click)="comprar()" class="btn-block btn btn-primary">  
+                        Registrarse
+                    </button>
+                </div>
+                <div class="col-md-3 col-xs-5"></div>
+            </div>
+        </div>
+    </div>
+</div> -->

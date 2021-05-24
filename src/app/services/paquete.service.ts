@@ -12,6 +12,7 @@ export class PaqueteService {
 
   product: any = {};
   productImageEdit: File[];
+  paqueteSelected: any = {};
 
   constructor(private http: HttpClient,
     private modalService: ModalService) { }

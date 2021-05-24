@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PaqueteService } from 'src/app/services/paquete.service';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-main',
