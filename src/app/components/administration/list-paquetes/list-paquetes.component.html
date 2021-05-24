@@ -25,7 +25,7 @@
 
                         <td>
                             <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(paquete._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(paquete._id)"></i>
                             <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(paquete)"></i>
                         </td>
                     </tr>
@@ -64,11 +64,8 @@
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="descripcion_paquete">Partidos</label>
-                        <select class="custom-select" id="fk_partidos" [(ngModel)]="fk_partidos">
-                            <option *ngFor="let partido of partidos" [value]="partido._id">
-                                {{ partido.equipo_local }} vs {{ partido.equipo_visita }}
-                            </option>
-                        </select>
+                        <ng-multiselect-dropdown [placeholder]="'Seleccionar'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="fk_partidos" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                        </ng-multiselect-dropdown>
                     </div>
                 </div>
             </div>
@@ -130,6 +127,48 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPaquete')" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditPaquete" tabindex="-1" aria-labelledby="modalEditPaqueteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditPaqueteLabel">Editar paquete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Nombre paquete</label>
+                        <input type="text" id="paqueteEdit" [(ngModel)]="paqueteEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Precio paquete</label>
+                        <input type="number" id="precioEdit" [(ngModel)]="precioEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Descripcion paquete</label>
+                        <textarea type="date" id="descripcionEdit" [(ngModel)]="descripcionEdit" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="descripcion_paquete">Partidos</label>
+                        <ng-multiselect-dropdown [placeholder]="'Seleccionar'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalEditPaquete')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editPaquete()">Editar</button>
             </div>
         </div>
     </div>

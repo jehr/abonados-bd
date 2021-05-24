@@ -40,18 +40,15 @@ export class ProductService {
   }
 
   getProductById(id: string): Observable<any> {
-    // this.modalService.abrirModal('modalLoading');
     const url = `${environment.urlApi}abonados/get-abonado?id=${id}`;
     return this.http.get(url).pipe(
       map(
         (res: any) => {
-          // this.modalService.cerarModal('modalLoading');
           return res;
         }
       ),
       catchError(
         (error: any) => {
-          // this.modalService.cerarModal('modalLoading');
           return error;
         }
       )

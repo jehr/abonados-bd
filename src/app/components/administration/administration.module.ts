@@ -14,6 +14,7 @@ import { ListPartidosComponent } from './list-partidos/list-partidos.component';
 import { ListEstadiosComponent } from './list-estadios/list-estadios.component';
 import { ModalViewEstadioComponent } from './modals-estadio/modal-view-estadio/modal-view-estadio.component';
 // import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -25,6 +26,7 @@ import { ModalViewEstadioComponent } from './modals-estadio/modal-view-estadio/m
     FormsModule,
     // ReactiveFormsModule
     // Ng2SmartTableModule
+    NgMultiSelectDropDownModule.forRoot()
   ],
   exports: [AdministrationComponent]
 })

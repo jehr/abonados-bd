@@ -19,9 +19,14 @@ export class ListEstadiosComponent implements OnInit {
   nameEstadio: string;
   cantEspectadores: string;
   ciudadEstadio: string;
+  _id:string;
+  nameEstadioEdit: string;
+  cantEspectadoresEdit: string;
+  ciudadEstadioEdit: string;
   espectadores_view: string;
   nombre_view: string;
   ciudad_view: string;
+  id_view: string;
 
   constructor(private estadioService: EstadioService,
     public modalService: ModalService,
@@ -93,7 +98,7 @@ export class ListEstadiosComponent implements OnInit {
         this.espectadores_view = res.estadio.espectadores;
         this.nombre_view = res.estadio.nombre;
         this.ciudad_view = res.estadio.ciudad;
-        this.modalService.abrirModal('modalViewPartido');
+        this.modalService.abrirModal('modalViewEstadio');
       } else {
         return;
       }
@@ -111,5 +116,56 @@ export class ListEstadiosComponent implements OnInit {
     }
     )
   };
+
+  showModalEdit(id: string): void {
+    this.estadioService.getEstadioById(id).subscribe((res) => {
+      if(res.ok) {
+        this.cantEspectadoresEdit = res.estadio.espectadores;
+        this.nameEstadioEdit = res.estadio.nombre;
+        this.ciudadEstadioEdit = res.estadio.ciudad;
+        this._id = res.estadio._id;
+        this.modalService.abrirModal('modalEditEstadio');
+      } else {
+        return;
+      }
+    });
+  }
+
+  editEstadio() {
+
+    if (!this.nameEstadioEdit || !this.cantEspectadoresEdit || !this.ciudadEstadioEdit) {
+      this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
+      return;
+    }
+
+    const estadio = {
+      nombre: this.nameEstadioEdit,
+      espectadores: this.cantEspectadoresEdit,
+      ciudad: this.ciudadEstadioEdit,
+      id: this._id
+    }
+
+    this.estadioService.editEstadio(estadio).subscribe((res) => {
+      if (res.ok) {
+        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        $('.dropify-clear').click();
+        if ($('.dropify-wrapper').hasClass('has-error')) {
+          $('.dropify-wrapper').removeClass('has-error');
+        }
+
+        this.nameEstadioEdit = '';
+        this.cantEspectadoresEdit = '';
+        this.ciudadEstadioEdit = '';
+        this._id = '';
+
+        this.loadEstadios();
+
+      } else {
+        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+      this.modalService.cerarModal('modalEditEstadio')
+    });
+    
+  }
 
 }

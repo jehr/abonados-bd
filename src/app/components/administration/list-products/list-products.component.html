@@ -13,7 +13,6 @@
                             <th scope="col">Nombre usuario</th>
                             <th scope="col">Nombre paquete</th>
                             <th scope="col">Precio abono</th>
-                            <th scope="col">Estadio</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -22,7 +21,6 @@
                             <th scope="row">{{ abonado.fk_usuario.nombre }}</th>
                             <td>{{ abonado.fk_paquete.nombre_paquete }}</td>
                             <td>{{ abonado.fk_paquete.precio }}</td>
-                            <td>{{ abonado.fk_estadio.nombre }}</td>
                             <td>
                                 <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(abonado._id)"></i>
                                 <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(abonado)"></i>
@@ -48,25 +46,54 @@
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="">Nombre</label>
-                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.nombre }}">
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ nombre_view }}">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="">Documento</label>
-                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.numero_documento }}">
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ documento_view }}">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="">Ciudad</label>
-                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.ciudad }}">
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ ciudad_view }}">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="">Direccin</label>
-                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.direccion }}">
+                        <label for="">Direccion</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ direccion_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Nombre paquete</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ paquete_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Partidos</label>
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Equipo local</th>
+                                    <th scope="col">Equipo visita</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let paquete of data_paquete">
+                                    <th>{{ paquete.equipo_local }}</th>
+                                    <td>{{ paquete.equipo_visita }}</td>
+                                    <td>{{ moment(paquete.fecha_partido).format('DD-MM-Y') }}</td>
+                                    <td>{{ paquete.hora }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
