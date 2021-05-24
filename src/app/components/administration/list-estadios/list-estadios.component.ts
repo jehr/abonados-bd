@@ -15,16 +15,32 @@ declare var $;
 export class ListEstadiosComponent implements OnInit {
 
   estadios: any[] = [];
+  estadio_view: any[] = [];
   nameEstadio: string;
   cantEspectadores: string;
+  ciudadEstadio: string;
+  espectadores_view: string;
+  nombre_view: string;
+  ciudad_view: string;
 
   constructor(private estadioService: EstadioService,
     public modalService: ModalService,
     public userService: UserService,
     private alertService: AlertService,) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+      this.loadEstadios();
+      setTimeout(() => {
+        $('.dropifys').dropify({
+          messages: {
+            'default': '',
+            'replace': '',
+            'remove': 'Eliminar',
+            'error': 'Ooops, something wrong happended.'
+          }
+        });
+      }, 100);
+    }
 
   showModalAdd(): void {
     this.modalService.abrirModal('modalAddEstadio');
@@ -32,17 +48,18 @@ export class ListEstadiosComponent implements OnInit {
 
   saveEstadio(): void {
 
-    if (!this.nameEstadio || !this.cantEspectadores) {
+    if (!this.nameEstadio || !this.cantEspectadores || !this.ciudadEstadio) {
       this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
       return;
     }
 
     const estadio = {
-      nameEstadio: this.nameEstadio,
-      cantEspectadores: this.cantEspectadores,
+      nombre: this.nameEstadio,
+      espectadores: this.cantEspectadores,
+      ciudad: this.ciudadEstadio
     }
 
-    this.estadioService.sendProduct(estadio).subscribe((res) => {
+    this.estadioService.sendEstadio(estadio).subscribe((res) => {
       if (res.ok) {
         this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
         $('.dropify-clear').click();
@@ -52,6 +69,7 @@ export class ListEstadiosComponent implements OnInit {
 
         this.nameEstadio = '';
         this.cantEspectadores = '';
+        this.ciudadEstadio = '';
 
         this.loadEstadios();
 
@@ -63,9 +81,35 @@ export class ListEstadiosComponent implements OnInit {
   }
 
   loadEstadios(): void {
-    this.estadioService.getAllProducts().subscribe((res) => {
+    this.estadioService.getAllEstadios().subscribe((res) => {
+      console.log('res :>> ', res);
       this.estadios = res.estadios;
     });
   }
+
+  showModalView(id: string): void {
+    this.estadioService.getEstadioById(id).subscribe((res) => {
+      if(res.ok) {
+        this.espectadores_view = res.estadio.espectadores;
+        this.nombre_view = res.estadio.nombre;
+        this.ciudad_view = res.estadio.ciudad;
+        this.modalService.abrirModal('modalViewPartido');
+      } else {
+        return;
+      }
+    });
+  }
+
+  deleteItem(item: any): void {
+    this.estadioService.deleteEstadio(item._id).subscribe((res) => {
+      if (res.ok) {
+        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        this.loadEstadios();
+      } else {
+        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+    }
+    )
+  };
 
 }

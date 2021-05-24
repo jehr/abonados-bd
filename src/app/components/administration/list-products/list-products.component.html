@@ -3,80 +3,75 @@
         <div class="d-flex no-block h1-custom justify-content-between" style="padding-right: 30px; margin-bottom: 10px;">
             <h4 class="card-title" style="color: #fff;"><span class="lstick"></span>Listado de abonados</h4>
             <div class="d-flex flex-end">
-                <button class="btn btn-block btn-sm" style="background-color: white; color: black;" (click)="showModalAdd()">Agregar abonado</button>
             </div>
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let product of products">
-                        <div>
-                            {{ product.name }}
-                        </div>
-                        <div>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(product._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(product)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(product)"></i>
-                        </div>
-                    </li>
-                </ul>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre usuario</th>
+                            <th scope="col">Nombre paquete</th>
+                            <th scope="col">Precio abono</th>
+                            <th scope="col">Estadio</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let abonado of abonados">
+                            <th scope="row">{{ abonado.fk_usuario.nombre }}</th>
+                            <td>{{ abonado.fk_paquete.nombre_paquete }}</td>
+                            <td>{{ abonado.fk_paquete.precio }}</td>
+                            <td>{{ abonado.fk_estadio.nombre }}</td>
+                            <td>
+                                <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(abonado._id)"></i>
+                                <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(abonado)"></i>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
 </div>
 
-<app-modal-edit-product></app-modal-edit-product>
-<app-modal-view-product></app-modal-view-product>
-
-<div class="modal fade" id="modalAddProduct" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
+<div class="modal fade" id="modalViewProduct" tabindex="-1" aria-labelledby="modalViewProductLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddProductLabel">Agregar abonado</h5>
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button> -->
+                <h5 class="modal-title" id="modalViewProductLabel">Detalle abonado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="file" class="dropifys" data-allowed-file-extensions='["png","jpg", "jpeg"]' (change)="product = $event.target.files" multiple />
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="nameProduct">Nombre</label>
-                        <input type="text" id="nameProduct" [(ngModel)]="name" class="form-control" placeholder="Nombre">
-                    </div>
-
-                </div>
-
-                <div class="form-row my-2">
-                    <div class="col">
-                        <label for="desProduct">Descripción</label>
-                        <input type="text" id="desProduct" [(ngModel)]="description" class="form-control" placeholder="Descripción">
+                        <label for="">Nombre</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.nombre }}">
                     </div>
                 </div>
-
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="priceProduct">Precio</label>
-                        <input type="text" id="priceProduct" [(ngModel)]="price" class="form-control" placeholder="Precio">
-                    </div>
-
-                </div>
-
-                <div class="form-row my-2">
-                    <div class="col">
-                        <label for="cateProduct">Categoría</label>
-                        <input type="text" id="cateProduct" [(ngModel)]="category" class="form-control" placeholder="Categoria">
+                        <label for="">Documento</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.numero_documento }}">
                     </div>
                 </div>
-
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="stockProduct">Stock</label>
-                        <input type="text" id="stockProduct" [(ngModel)]="stock" class="form-control" placeholder="Stock">
+                        <label for="">Ciudad</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.ciudad }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Direccin</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ data_usuario.direccion }}">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddProduct')" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" (click)="saveProduct()">Agregar</button>
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewProduct')" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

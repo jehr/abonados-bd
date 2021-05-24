@@ -12,12 +12,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListPaquetesComponent } from './list-paquetes/list-paquetes.component';
 import { ListPartidosComponent } from './list-partidos/list-partidos.component';
 import { ListEstadiosComponent } from './list-estadios/list-estadios.component';
+import { ModalViewEstadioComponent } from './modals-estadio/modal-view-estadio/modal-view-estadio.component';
 // import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 
 @NgModule({
-  declarations: [AdministrationComponent, SidebarComponent, CardsComponent, ListProductsComponent, ModalViewProductComponent, ModalEditProductComponent, ModalAddProductComponent, ListPaquetesComponent, ListPartidosComponent, ListEstadiosComponent],
+  declarations: [AdministrationComponent, SidebarComponent, CardsComponent, ListProductsComponent, ModalViewProductComponent, ModalEditProductComponent, ModalAddProductComponent, ListPaquetesComponent, ListPartidosComponent, ListEstadiosComponent, ModalViewEstadioComponent],
   imports: [
     CommonModule,
     ADMINISTRATION_ROUTES,

@@ -8,18 +8,28 @@
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <!-- <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let product of products">
-                        <div>
-                            {{ product.name }}
-                        </div>
-                        <div>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(product._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(product)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(product)"></i>
-                        </div>
-                    </li>
-                </ul> -->
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Equipo Local</th>
+                            <th scope="col">Equipo Visitante</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let partido of partidos">
+                        <th scope="row">{{ partido.fecha_partido}}</th>
+                        <td>{{ partido.hora }}</td>
+                        <td>{{ partido.equipo_local }}</td>
+                        <td>{{ partido.equipo_visita }}</td>
+                        <td>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(partido._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(partido)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(partido)"></i>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -28,55 +38,82 @@
 <app-modal-edit-product></app-modal-edit-product>
 <app-modal-view-product></app-modal-view-product>
 
-<!-- <div class="modal fade" id="modalAddProduct" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
+<div class="modal fade" id="modalAddPartido" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddProductLabel">Agregar abonado</h5>
+                <h5 class="modal-title" id="modalAddProductLabel">Agregar partido</h5>
             </div>
             <div class="modal-body">
-                <input type="file" class="dropifys" data-allowed-file-extensions='["png","jpg", "jpeg"]' (change)="product = $event.target.files" multiple />
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="nameProduct">Nombre</label>
-                        <input type="text" id="nameProduct" [(ngModel)]="name" class="form-control" placeholder="Nombre">
-                    </div>
-
-                </div>
-
-                <div class="form-row my-2">
-                    <div class="col">
-                        <label for="desProduct">Descripción</label>
-                        <input type="text" id="desProduct" [(ngModel)]="description" class="form-control" placeholder="Descripción">
+                        <label for="equipo_local">Nombre Equipo Local</label>
+                        <input type="text" id="equipo_local" [(ngModel)]="equipo_local" class="form-control" placeholder="Nombre equipo local">
                     </div>
                 </div>
-
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="priceProduct">Precio</label>
-                        <input type="text" id="priceProduct" [(ngModel)]="price" class="form-control" placeholder="Precio">
-                    </div>
-
-                </div>
-
-                <div class="form-row my-2">
-                    <div class="col">
-                        <label for="cateProduct">Categoría</label>
-                        <input type="text" id="cateProduct" [(ngModel)]="category" class="form-control" placeholder="Categoria">
+                        <label for="equipo_visita">Nombre Equipo Visitante</label>
+                        <input type="text" id="equipo_visita" [(ngModel)]="equipo_visita" class="form-control" placeholder="Nombre equipo visitante">
                     </div>
                 </div>
-
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="stockProduct">Stock</label>
-                        <input type="text" id="stockProduct" [(ngModel)]="stock" class="form-control" placeholder="Stock">
+                        <label for="fecha_partido">Fecha partido</label>
+                        <input type="date" id="fecha_partido" [(ngModel)]="fecha_partido" class="form-control" placeholder="Cantidad de espectadores">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="hora">Hora partido</label>
+                        <input type="time" id="hora" [(ngModel)]="hora" class="form-control" placeholder="Cantidad de espectadores">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddProduct')" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" (click)="saveProduct()">Agregar</button>
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddEstadio')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="savePartido()">Agregar</button>
             </div>
         </div>
     </div>
-</div> -->
+</div>
+
+<div class="modal fade" id="modalViewPartido" tabindex="-1" aria-labelledby="modalViewPartidoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalViewPartidoLabel">Detalle partido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Equipo Local</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ equipo_local_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Equipo Visita</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ equipo_visita_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Fecha partido</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ fecha_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Hora</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ hora_view }}">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPartido')" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

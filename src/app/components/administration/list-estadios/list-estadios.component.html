@@ -8,25 +8,35 @@
         </div>
         <div class="row shadow w-100 ">
             <div class="col">
-                <!-- <ul class="list-group list-contend">
-                    <li class="list-group-item d-flex align-items-center justify-content-between p-4" *ngFor="let product of products">
-                        <div>
-                            {{ product.name }}
-                        </div>
-                        <div>
-                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(product._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(product)"></i>
-                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(product)"></i>
-                        </div>
-                    </li>
-                </ul> -->
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre del estadio</th>
+                            <th scope="col">Capacidad del estadio</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let estadio of estadios">
+                        <th scope="row">{{ estadio.nombre }}</th>
+                        <td>{{ estadio.espectadores }}</td>
+                        <td>{{ estadio.capacidad }}</td>
+
+
+                        <td>
+                            <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(estadio._id)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(estadio)"></i>
+                            <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(estadio)"></i>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
-<app-modal-edit-product></app-modal-edit-product>
-<app-modal-view-product></app-modal-view-product>
+<app-modal-view-estadio></app-modal-view-estadio>
+
 
 <div class="modal fade" id="modalAddEstadio" tabindex="-1" aria-labelledby="modalAddProductLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,10 +57,50 @@
                         <input type="number" id="cantEspectadores" [(ngModel)]="cantEspectadores" class="form-control" placeholder="Cantidad de espectadores">
                     </div>
                 </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="ciudadEstadio">Ciudad</label>
+                        <input type="text" id="ciudadEstadio" [(ngModel)]="ciudadEstadio" class="form-control" placeholder="Ciudad de ubicación">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddEstadio')" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" (click)="saveEstadio()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalViewPartido" tabindex="-1" aria-labelledby="modalViewPartidoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalViewPartidoLabel">Detalle partido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Nombre estadio</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ nombre_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Cantiad de espectadores</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ espectadores_view }}">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Ciudad</label>
+                        <input type="text" id="" readonly class="form-control" placeholder=" {{ ciudad_view }}">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPartido')" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
