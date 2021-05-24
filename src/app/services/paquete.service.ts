@@ -75,39 +75,20 @@ export class PaqueteService {
     );
   }
 
-  editPaquete(product: any): Observable<any> {
+  editPaquete(paquete: any): Observable<any> {
     const url = `${environment.urlApi}paquetes/edit-paquete`;
     const token: string = sessionStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    const fd = new FormData();
-    fd.append('name', product.name);
-    fd.append('description', product.description);
-    fd.append('createdAt', product.createdAt);
-    fd.append('category', product.category);
-    fd.append('stock', product.stock);
-    fd.append('price', product.price);
-    fd.append('id', product.id);
-
-    if (product.product) {
-      for (let img of product.product) {
-        fd.append('image', img);
-      }
-    }
-
-    // this.modalService.abrirModal('modalLoading');
-
-    return this.http.post(url, fd, {headers}).pipe(
+    return this.http.post(url, paquete, {headers}).pipe(
       map(
         (res: any) => {
-          // this.modalService.cerarModal('modalLoading');
           return res;
         }
       ),
       catchError(
         (error: any) => {
-          // this.modalService.cerarModal('modalLoading');
           return error;
         }
       )

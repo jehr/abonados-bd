@@ -24,6 +24,11 @@ export class ListPaquetesComponent implements OnInit {
   nombre_view: string;
   precio_view: string;
   descripcion_view: string;
+  paqueteEdit: string;
+  precioEdit: string;
+  descripcionEdit: string;
+  fk_partidos_edit: string;
+  _id: string;
 
 
   constructor(private paqueteService: PaqueteService,
@@ -104,7 +109,6 @@ export class ListPaquetesComponent implements OnInit {
     this.paqueteService.getPaqueteById(id).subscribe((res) => {
       if(res.ok) {
         this.paquetes_view = res.paquete.fk_partidos;
-        console.log('this.paquetes_view :>> ', this.paquetes_view);
         this.nombre_view = res.paquete.nombre_paquete;
         this.precio_view = res.paquete.precio;
         this.descripcion_view = res.paquete.descripcion_paquete;
@@ -125,6 +129,59 @@ export class ListPaquetesComponent implements OnInit {
       }
     }
     )
-  };
+  }
+
+  showModalEdit(id: string): void {
+    this.paqueteService.getPaqueteById(id).subscribe((res) => {
+      if(res.ok) {
+        console.log('res :>> ', res);
+        this.fk_partidos_edit = res.paquete.fk_partidos;
+        this.paqueteEdit = res.paquete.nombre_paquete;
+        this.precioEdit = res.paquete.precio;
+        this.descripcionEdit = res.paquete.descripcion_paquete;
+        this._id = res.paquete._id;
+        this.modalService.abrirModal('modalEditPaquete');
+      } else {
+        return;
+      }
+    });
+  }
+
+  editPaquete() {
+
+    if (!this.paqueteEdit || !this.precioEdit || !this.descripcionEdit) {
+      this.alertService.mostrarAlertaSimplesPorTipo('warning', 'Todos los campos son obligatorios', '');
+      return;
+    }
+
+    const estadio = {
+      nombre_paquete: this.paqueteEdit,
+      precio: this.precioEdit,
+      descripcion_paquete: this.descripcionEdit,
+      id: this._id,
+      fk_partidos: this.fk_partidos_edit
+    }
+
+    this.paqueteService.editPaquete(estadio).subscribe((res) => {
+      if (res.ok) {
+        this.alertService.mostrarAlertaSimplesPorTipo('success', res.message, '');
+        $('.dropify-clear').click();
+        if ($('.dropify-wrapper').hasClass('has-error')) {
+          $('.dropify-wrapper').removeClass('has-error');
+        }
+
+        this.paqueteEdit = '';
+        this.precioEdit = '';
+        this.descripcionEdit = '';
+        this._id = '';
+
+        this.loadPaquetes();
+
+      } else {
+        this.alertService.mostrarAlertaSimplesPorTipo('error', res.message, '');
+      }
+      this.modalService.cerarModal('modalEditPaquete')
+    });
+  }
 
 }

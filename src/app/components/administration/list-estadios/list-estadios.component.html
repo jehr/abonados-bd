@@ -72,11 +72,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalViewPartido" tabindex="-1" aria-labelledby="modalViewPartidoLabel" aria-hidden="true">
+<div class="modal fade" id="modalViewEstadio" tabindex="-1" aria-labelledby="modalViewEstadioLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalViewPartidoLabel">Detalle partido</h5>
+                <h5 class="modal-title" id="modalViewEstadioLabel">Detalle estadio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -100,43 +100,43 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPartido')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewEstadio')" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="modalEditPartido" tabindex="-1" aria-labelledby="modalEditPartidoLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditEstadio" tabindex="-1" aria-labelledby="modalEditEstadioLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalEditPartidoLabel">Editar partido</h5>
+                <h5 class="modal-title" id="modalEditEstadioLabel">Editar estadio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="form-row my-2">
                     <div class="col">
-                        <input type="text" id="" class="form-control" [(ngModel)]="_id" placeholder="{{ id_view }}" disabled>
+                        <input type="text" id="_id" class="form-control" [(ngModel)]="_id" disabled>
                         <label for="">Nombre estadio</label>
-                        <input type="text" id="nameEstadioEdit" [(ngModel)]="nameEstadioEdit" class="form-control" value="{{ nombre_view }}">
+                        <input type="text" id="nameEstadioEdit" [(ngModel)]="nameEstadioEdit" class="form-control">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="">Cantiad de espectadores</label>
-                        <input type="number" id="cantEspectadoresEdit" [(ngModel)]="cantEspectadoresEdit" class="form-control" value="{{ espectadores_view }}">
+                        <input type="number" id="cantEspectadoresEdit" [(ngModel)]="cantEspectadoresEdit" class="form-control">
                     </div>
                 </div>
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="">Ciudad</label>
-                        <input type="text" id="ciudadEstadioEdit" [(ngModel)]="ciudadEstadioEdit" class="form-control" value=" {{ ciudad_view }}">
+                        <input type="text" id="ciudadEstadioEdit" [(ngModel)]="ciudadEstadioEdit" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPartido')" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" (click)="editEstadio()">Agregar</button>
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalEditEstadio')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editEstadio()">Editar</button>
             </div>
         </div>
     </div>

@@ -15,6 +15,7 @@
                             <th scope="col">Hora</th>
                             <th scope="col">Equipo Local</th>
                             <th scope="col">Equipo Visitante</th>
+                            <th scope="col">Estadio</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -23,9 +24,10 @@
                         <td>{{ partido.hora }}</td>
                         <td>{{ partido.equipo_local }}</td>
                         <td>{{ partido.equipo_visita }}</td>
+                        <td>{{ partido.estadio }}</td>
                         <td>
                             <i class="fas fa-eye md-36 m-1 eye-icon" (click)="showModalView(partido._id)"></i>
-                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(partido)"></i>
+                            <i class="fas fa-edit md-36 m-1 edit-icon" (click)="showModalEdit(partido._id)"></i>
                             <i class="fas fa-trash md-36 m-1 trash-icon" (click)="deleteItem(partido)"></i>
                         </td>
                     </tr>
@@ -69,9 +71,19 @@
                         <input type="time" id="hora" [(ngModel)]="hora" class="form-control" placeholder="Cantidad de espectadores">
                     </div>
                 </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="hora">Estadio</label>
+                        <select class="custom-select" id="fk_estadio" [(ngModel)]="fk_estadio">
+                            <option *ngFor="let estadio of estadios" [value]="estadio._id">
+                                {{ estadio.nombre }} 
+                            </option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddEstadio')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalAddPartido')" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" (click)="savePartido()">Agregar</button>
             </div>
         </div>
@@ -101,7 +113,7 @@
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="">Fecha partido</label>
-                        <input type="text" id="" readonly class="form-control" placeholder="{{ fecha_view }}">
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ moment(fecha_view).format('DD-MM-Y') }}">
                     </div>
                 </div>
                 <div class="form-row my-2">
@@ -110,9 +122,66 @@
                         <input type="text" id="" readonly class="form-control" placeholder="{{ hora_view }}">
                     </div>
                 </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Estadio</label>
+                        <input type="text" id="" readonly class="form-control" placeholder="{{ estadio_view }}">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalViewPartido')" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditPartido" tabindex="-1" aria-labelledby="modalEditPartidoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditPartidoLabel">Editar partido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Equipo Local</label>
+                        <input type="text" id="equipoLocalEdit" [(ngModel)]="equipoLocalEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Equipo Visita</label>
+                        <input type="text" id="equipoVisitaEdit" [(ngModel)]="equipoVisitaEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Fecha partido</label>
+                        <input type="date" id="fechaEdit" [(ngModel)]="fechaEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Hora</label>
+                        <input type="hour" id="horaEdit" [(ngModel)]="horaEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row my-2">
+                    <div class="col">
+                        <label for="">Estadio</label>
+                        <select class="custom-select" id="fk_estadio_edit" [(ngModel)]="fk_estadio_edit">
+                            <option *ngFor="let estadio of estadios" [value]="estadio._id">
+                                {{ estadio.nombre }} 
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalService.cerarModal('modalEditPartido')" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editPartido()">Editar</button>
             </div>
         </div>
     </div>
