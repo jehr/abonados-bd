@@ -1,0 +1,18 @@
+<div class="contenedor mt-4">
+    <div class="contenedor-2">
+        <div class="card" *ngFor="let paquete of paquetes">
+            <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.publimetro.co%2Fco%2Fdeportes%2F2018%2F05%2F15%2Fmundial-rusia-2018-lista-oficial-de-23-jugadores-de-colombia.html&psig=AOvVaw3Ij_zPX0yz6PZqeVzc5I3C&ust=1621799364048000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDtpNyp3fACFQAAAAAdAAAAABAU"
+                class="card-img-top" alt="Lamp" width="32" height="32"> -->
+            <div class="card-body">
+                <h5 class="card-title">{{ paquete.nombre_paquete }}</h5>
+                <b>{{ paquete.precio }}</b>
+                <p class="card-text">
+                    {{ paquete.descripcion_paquete }}
+                </p>
+                <a (click)="comprar()" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
